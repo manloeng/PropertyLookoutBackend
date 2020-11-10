@@ -1,11 +1,22 @@
 const express = require("express");
 const app = express();
 const port = 3030;
+const mongoose = require("mongoose");
 const cors = require("cors");
 const apiRouter = require("./routes/api");
 const { routeNotFound, handleCustomErrors, handle500 } = require("./errors");
 
-const app = express();
+require("dotenv").config();
+
+mongoose
+  .connect(process.env.uri, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
+  .then(() => {
+    console.log("MongoDB Connected…");
+  })
+  .catch((err) => console.log(err));
 
 app.use(cors());
 app.use(express.static("public"));
