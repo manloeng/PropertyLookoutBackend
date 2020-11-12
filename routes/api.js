@@ -1,5 +1,5 @@
 const apiRouter = require("express").Router();
-const addProperty = require("../controller/addProperty");
+const propertyRouter = require("./propertyRouter");
 
 const { methodNotAllowed } = require("../errors");
 
@@ -8,6 +8,6 @@ apiRouter
   .get((req, res) => res.send({ ok: true }))
   .all(methodNotAllowed);
 
-apiRouter.route("/property").post(addProperty);
+apiRouter.use("/property", propertyRouter);
 
 module.exports = apiRouter;
