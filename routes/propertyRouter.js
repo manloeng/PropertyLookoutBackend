@@ -4,6 +4,7 @@ const getAllProperties = require("../controller/getAllProperties");
 
 const { methodNotAllowed } = require("../errors");
 
-propertyRouter.route("/").get(getAllProperties).post(addProperty).all(methodNotAllowed);
+propertyRouter.route("/").post(addProperty).all(methodNotAllowed);
+propertyRouter.route("/:user_id").get(getAllProperties).all(methodNotAllowed);
 
 module.exports = propertyRouter;
