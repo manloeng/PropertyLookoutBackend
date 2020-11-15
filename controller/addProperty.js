@@ -1,11 +1,11 @@
-const mongoose = require("mongoose");
+const { v4: uuidv4 } = require("uuid");
 const Property = require("../models/property/model.js");
 
 function addProperty(req, res) {
   const content = req.body;
 
   var property = new Property({
-    _id: mongoose.Types.ObjectId(),
+    uuid: uuidv4(),
     ...content,
   });
 

@@ -7,7 +7,7 @@ async function getAllProperties(req, res) {
   const propertyUuids = ["5fac5c21d52909df1f9c0e9a", "5fad93483e5d35fe772901ff"];
 
   const promises = propertyUuids.map(async (uuid) => {
-    const property = await Property.findById({ _id: uuid });
+    const property = await Property.find({ uuid });
 
     return property;
   });

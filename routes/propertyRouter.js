@@ -1,10 +1,12 @@
 const propertyRouter = require("express").Router();
 const addProperty = require("../controller/addProperty");
 const getAllProperties = require("../controller/getAllProperties");
+const getPropertyByPropertyId = require("../controller/getPropertyByPropertyId");
 
 const { methodNotAllowed } = require("../errors");
 
-propertyRouter.route("/").post(addProperty).all(methodNotAllowed);
-propertyRouter.route("/:user_id").get(getAllProperties).all(methodNotAllowed);
+// should get all properties without showing users id
+propertyRouter.route("/").get(getAllProperties).post(addProperty).all(methodNotAllowed);
+propertyRouter.route("/:property_id").get(getPropertyByPropertyId).all(methodNotAllowed);
 
 module.exports = propertyRouter;
