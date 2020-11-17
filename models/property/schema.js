@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 const Schema = mongoose.Schema;
-let PropertySchema = new Schema({
+let PropertiesSchema = new Schema({
   uuid: {
     type: String,
   },
@@ -141,4 +141,4 @@ let PropertySchema = new Schema({
   },
 });
 
-module.exports = PropertySchema;
+module.exports = PropertiesSchema;

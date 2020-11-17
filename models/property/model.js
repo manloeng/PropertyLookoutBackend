@@ -1,5 +1,5 @@
 const { connection } = require("mongoose");
-const PropertySchema = require("./schema");
-const propertyDB = connection.useDb(process.env.DB);
+const PropertiesSchema = require("./schema");
+const db = connection.useDb(process.env.DB);
 
-module.exports = propertyDB.model("Property", PropertySchema, "property");
+module.exports = db.model("Properties", PropertiesSchema, "properties");
