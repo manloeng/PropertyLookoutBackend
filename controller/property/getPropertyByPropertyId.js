@@ -1,4 +1,4 @@
-const Property = require("../models/property/model.js");
+const Property = require("../../models/property/model");
 
 async function getPropertyByPropertyId(req, res) {
   // should be on the route
