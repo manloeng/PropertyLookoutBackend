@@ -1,4 +1,4 @@
-const Property = require("../models/property/model.js");
+const Property = require("../../models/property/model.js");
 
 async function getAllProperties(req, res) {
   // based on landlord's id
