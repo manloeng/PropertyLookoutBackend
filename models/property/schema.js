@@ -46,17 +46,11 @@ let PropertiesSchema = new Schema({
     tenure: {
       type: String,
     },
-    length: {
-      type: Number,
-    },
     startDate: {
       type: Date,
     },
-    renewDate: {
+    insuranceStartDate: {
       type: Date,
-    },
-    note: {
-      type: String,
     },
   },
   propertySize: {
@@ -106,9 +100,6 @@ let PropertiesSchema = new Schema({
       startDate: {
         type: Date,
       },
-      renewDate: {
-        type: Date,
-      },
     },
     gasCertificate: {
       isRequired: {
@@ -117,15 +108,9 @@ let PropertiesSchema = new Schema({
       startDate: {
         type: Date,
       },
-      renewDate: {
-        type: Date,
-      },
     },
     electricCertificate: {
       startDate: {
-        type: Date,
-      },
-      renewDate: {
         type: Date,
       },
     },
