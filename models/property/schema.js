@@ -38,7 +38,7 @@ let PropertiesSchema = new Schema({
     cost: {
       type: Number,
     },
-    units: {
+    unit: {
       type: String,
     },
   },
@@ -57,7 +57,7 @@ let PropertiesSchema = new Schema({
     size: {
       type: Number,
     },
-    units: {
+    unit: {
       type: String,
     },
   },
@@ -81,7 +81,7 @@ let PropertiesSchema = new Schema({
       rent: {
         type: Number,
       },
-      units: {
+      unit: {
         type: String,
       },
     },
@@ -89,7 +89,7 @@ let PropertiesSchema = new Schema({
       amount: {
         type: Number,
       },
-      units: {
+      unit: {
         type: String,
       },
     },
