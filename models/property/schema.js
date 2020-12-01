@@ -49,6 +49,9 @@ let PropertiesSchema = new Schema({
     startDate: {
       type: Date,
     },
+    leaseLength: {
+      type: Number,
+    },
     insuranceStartDate: {
       type: Date,
     },
