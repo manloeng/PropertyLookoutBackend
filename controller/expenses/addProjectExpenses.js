@@ -1,18 +1,31 @@
-const ProjectExpenses = require("../../models/projectExpenses/model.js");
+const Property = require("../../models/landlords/model");
 
 function addProjectExpenses(req, res) {
   const property_uuid = req.params.property_id;
-  const { expenseName, expenseCost, expenseStartDate } = req.body;
+  const expensesData = req.body;
+  let expenses = {};
 
-  const dateArray = expenseStartDate.split("-");
-  const dateKey = `${dateArray[1]}/${dateArray[0]}`;
+  expensesData.map((expense) => {
+    const { expenseName, expenseCost, expenseStartDate } = expense;
+    const dateArray = expenseStartDate.split("-");
+    const dateKey = `${dateArray[1]}/${dateArray[0]}`;
 
-  const projectsExpenses = new ProjectExpenses({
-    data: {
-      [property_uuid]: {
-        [dateKey]: { [expenseName]: expenseCost },
-      },
-    },
+    const propertyKeys = Object.keys(expenses);
+    if (propertyKeys.length > 0) {
+      const dateKeys = Object.keys(expenses[property_uuid]);
+
+      if (dateKeys.includes(dateKey)) {
+        expenses[property_uuid][dateKey][expenseName] = expenseCost;
+      } else {
+        expenses[property_uuid] = { [dateKey]: { [expenseName]: expenseCost } };
+      }
+    } else {
+      expenses = { [property_uuid]: { [dateKey]: { [expenseName]: expenseCost } } };
+    }
+  });
+
+  const projectsExpenses = new Property({
+    data: expenses,
   });
 
   projectsExpenses.save(function (err) {

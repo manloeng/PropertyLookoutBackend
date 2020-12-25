@@ -127,6 +127,9 @@ let PropertiesSchema = new Schema({
   estimatedPriceToDate: {
     type: Number,
   },
+  expenses: {
+    type: Object,
+  },
 });
 
 module.exports = PropertiesSchema;
