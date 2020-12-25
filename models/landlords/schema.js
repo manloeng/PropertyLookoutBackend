@@ -2,9 +2,6 @@ const mongoose = require("mongoose");
 
 const Schema = mongoose.Schema;
 let Landlords = new Schema({
-  uuid: {
-    type: String,
-  },
   name: {
     type: String,
   },
