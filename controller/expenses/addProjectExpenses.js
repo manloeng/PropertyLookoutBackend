@@ -1,39 +1,36 @@
-const Property = require("../../models/landlords/model");
+const Property = require("../../models/property/model");
 
-function addProjectExpenses(req, res) {
-  const property_uuid = req.params.property_id;
-  const expensesData = req.body;
-  let expenses = {};
+async function addProjectExpenses(req, res) {
+  try {
+    const propertyUuid = req.params.property_id;
+    const expensesData = req.body;
+    let expenses = {};
+    const property = await Property.findOneAndUpdate({ uuid: propertyUuid });
 
-  expensesData.map((expense) => {
-    const { expenseName, expenseCost, expenseStartDate } = expense;
-    const dateArray = expenseStartDate.split("-");
-    const dateKey = `${dateArray[1]}/${dateArray[0]}`;
+    expensesData.map((expense) => {
+      const { expenseName, expenseCost, expenseStartDate } = expense;
+      const dateArray = expenseStartDate.split("-");
+      const dateKey = `${dateArray[1]}/${dateArray[0]}`;
 
-    const propertyKeys = Object.keys(expenses);
-    if (propertyKeys.length > 0) {
-      const dateKeys = Object.keys(expenses[property_uuid]);
-
+      const dateKeys = Object.keys(expenses);
       if (dateKeys.includes(dateKey)) {
-        expenses[property_uuid][dateKey][expenseName] = expenseCost;
+        expenses[dateKey][expenseName] = expenseCost;
       } else {
-        expenses[property_uuid] = { [dateKey]: { [expenseName]: expenseCost } };
+        expenses = { [dateKey]: { [expenseName]: expenseCost } };
       }
-    } else {
-      expenses = { [property_uuid]: { [dateKey]: { [expenseName]: expenseCost } } };
-    }
-  });
+    });
 
-  const projectsExpenses = new Property({
-    data: expenses,
-  });
+    property.expenses = expenses;
 
-  projectsExpenses.save(function (err) {
-    if (err) console.log(err);
+    await property.save(function (err) {
+      if (err) console.log(err);
 
-    console.log("projectsExpenses successfully saved.");
-    res.send({ msg: "success" });
-  });
+      console.log("projectsExpenses successfully saved.");
+      res.send({ msg: "success" });
+    });
+  } catch (e) {
+    console.log(e);
+  }
 }
 
 module.exports = addProjectExpenses;

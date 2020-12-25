@@ -8,6 +8,7 @@ const { routeNotFound, handleCustomErrors, handle500 } = require("./errors");
 
 require("dotenv").config();
 
+mongoose.set("useFindAndModify", false);
 mongoose
   .connect(process.env.uri, {
     useNewUrlParser: true,
