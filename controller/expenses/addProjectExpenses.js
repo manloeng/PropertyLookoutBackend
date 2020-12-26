@@ -13,14 +13,15 @@ async function addProjectExpenses(req, res) {
       const dateKey = `${dateArray[1]}/${dateArray[0]}`;
 
       const dateKeys = Object.keys(expenses);
+
       if (dateKeys.includes(dateKey)) {
         expenses[dateKey][expenseName] = expenseCost;
       } else {
-        expenses = { [dateKey]: { [expenseName]: expenseCost } };
+        expenses = { ...expenses, [dateKey]: { [expenseName]: expenseCost } };
       }
     });
 
-    property.expenses = expenses;
+    property.expenses = { ...property.expenses, ...expenses };
 
     await property.save(function (err) {
       if (err) console.log(err);
