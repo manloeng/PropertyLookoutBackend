@@ -4,20 +4,19 @@ async function addProjectExpenses(req, res) {
   try {
     const propertyUuid = req.params.property_id;
     const expensesData = req.body;
-    let expenses = {};
+    let expenses = { capital: {}, revenue: {} };
     const property = await Property.findOneAndUpdate({ uuid: propertyUuid });
 
     expensesData.map((expense) => {
-      const { expenseName, expenseCost, expenseStartDate } = expense;
+      const { expenseType, expenseName, expenseCost, expenseStartDate } = expense;
       const dateArray = expenseStartDate.split("-");
       const dateKey = `${dateArray[1]}/${dateArray[0]}`;
 
-      const dateKeys = Object.keys(expenses);
-
+      const dateKeys = Object.keys(expenses[expenseType]);
       if (dateKeys.includes(dateKey)) {
-        expenses[dateKey][expenseName] = expenseCost;
+        expenses[expenseType][dateKey][expenseName] = expenseCost;
       } else {
-        expenses = { ...expenses, [dateKey]: { [expenseName]: expenseCost } };
+        expenses[expenseType] = { ...expenses[expenseType], [dateKey]: { [expenseName]: expenseCost } };
       }
     });
 
