@@ -17,5 +17,8 @@
     "mongoose": "^5.10.13",
     "nodemon": "^2.0.6",
     "uuid": "^8.3.1"
+  },
+  "devDependencies": {
+    "faker": "^5.1.0"
   }
 }

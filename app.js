@@ -5,6 +5,7 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 const apiRouter = require("./routes/api");
 const { routeNotFound, handleCustomErrors, handle500 } = require("./errors");
+const getTestData = require("./generateFakeData");
 
 require("dotenv").config();
 
@@ -24,6 +25,8 @@ app.use(express.static("public"));
 app.use(express.json());
 
 app.use("/api", apiRouter);
+
+app.get("/test", getTestData);
 
 app.all("/*", routeNotFound);
 
