@@ -50,224 +50,278 @@ function getTestData(req, res) {
       finances: {
         expense: {
           capital: {
-            monthly: [
-              {
-                name: faker.commerce.productName(),
-                cost: faker.commerce.price(),
-                startDate: faker.date.between("2019-01-01", "2020-11-05"),
-                endDate: faker.date.between("2020-01-01", "2023-11-05"),
-              },
-              {
-                name: faker.commerce.productName(),
-                cost: faker.commerce.price(),
-                startDate: faker.date.between("2019-01-01", "2020-11-05"),
-                endDate: faker.date.between("2020-01-01", "2023-11-05"),
-              },
-              {
-                name: faker.commerce.productName(),
-                cost: faker.commerce.price(),
-                startDate: faker.date.between("2019-01-01", "2020-11-05"),
-                endDate: faker.date.between("2020-01-01", "2023-11-05"),
-              },
-              {
-                name: faker.commerce.productName(),
-                cost: faker.commerce.price(),
-                startDate: faker.date.between("2019-01-01", "2020-11-05"),
-                endDate: faker.date.between("2020-01-01", "2023-11-05"),
-              },
-              {
-                name: faker.commerce.productName(),
-                cost: faker.commerce.price(),
-                startDate: faker.date.between("2019-01-01", "2020-11-05"),
-                endDate: faker.date.between("2020-01-01", "2023-11-05"),
-              },
-              {
-                name: faker.commerce.productName(),
-                cost: faker.commerce.price(),
-                startDate: faker.date.between("2019-01-01", "2020-11-05"),
-                endDate: faker.date.between("2020-01-01", "2023-11-05"),
-              },
-            ],
-            oneTime: [
-              {
-                name: faker.commerce.productName(),
-                cost: faker.commerce.price(),
-                startDate: faker.date.between("2019-01-01", "2020-11-05"),
-              },
-              {
-                name: faker.commerce.productName(),
-                cost: faker.commerce.price(),
-                startDate: faker.date.between("2019-01-01", "2020-11-05"),
-              },
-              {
-                name: faker.commerce.productName(),
-                cost: faker.commerce.price(),
-                startDate: faker.date.between("2019-01-01", "2020-11-05"),
-              },
+            monthly: {
+              "12/2020": [
+                {
+                  name: faker.commerce.productName(),
+                  cost: faker.commerce.price(),
+                  startDate: faker.date.between("2020-12-01", "2020-12-30"),
+                  endDate: faker.date.between("2020-01-01", "2023-11-05"),
+                },
+                {
+                  name: faker.commerce.productName(),
+                  cost: faker.commerce.price(),
+                  startDate: faker.date.between("2020-12-01", "2020-12-30"),
+                  endDate: faker.date.between("2020-01-01", "2023-11-05"),
+                },
+              ],
+              "05/2020": [
+                {
+                  name: faker.commerce.productName(),
+                  cost: faker.commerce.price(),
+                  startDate: faker.date.between("2020-05-01", "2020-05-30"),
+                  endDate: faker.date.between("2020-01-01", "2023-11-05"),
+                },
+                {
+                  name: faker.commerce.productName(),
+                  cost: faker.commerce.price(),
+                  startDate: faker.date.between("2020-05-01", "2020-05-30"),
+                  endDate: faker.date.between("2020-01-01", "2023-11-05"),
+                },
+              ],
+              "05/2019": [
+                {
+                  name: faker.commerce.productName(),
+                  cost: faker.commerce.price(),
+                  startDate: faker.date.between("2019-05-01", "2019-05-30"),
+                  endDate: faker.date.between("2020-01-01", "2023-11-05"),
+                },
+                {
+                  name: faker.commerce.productName(),
+                  cost: faker.commerce.price(),
+                  startDate: faker.date.between("2020-05-01", "2020-05-30"),
+                  endDate: faker.date.between("2020-01-01", "2023-11-05"),
+                },
+              ],
+            },
 
-              {
-                name: faker.commerce.productName(),
-                cost: faker.commerce.price(),
-                startDate: faker.date.between("2019-01-01", "2020-11-05"),
-              },
-              {
-                name: faker.commerce.productName(),
-                cost: faker.commerce.price(),
-                startDate: faker.date.between("2019-01-01", "2020-11-05"),
-              },
-              {
-                name: faker.commerce.productName(),
-                cost: faker.commerce.price(),
-                startDate: faker.date.between("2019-01-01", "2020-11-05"),
-              },
-            ],
+            oneTime: {
+              "12/2020": [
+                {
+                  name: faker.commerce.productName(),
+                  cost: faker.commerce.price(),
+                  startDate: faker.date.between("2020-12-01", "2020-12-30"),
+                  endDate: faker.date.between("2020-01-01", "2023-11-05"),
+                },
+                {
+                  name: faker.commerce.productName(),
+                  cost: faker.commerce.price(),
+                  startDate: faker.date.between("2020-12-01", "2020-12-30"),
+                  endDate: faker.date.between("2020-01-01", "2023-11-05"),
+                },
+              ],
+              "05/2020": [
+                {
+                  name: faker.commerce.productName(),
+                  cost: faker.commerce.price(),
+                  startDate: faker.date.between("2020-05-01", "2020-05-30"),
+                  endDate: faker.date.between("2020-01-01", "2023-11-05"),
+                },
+                {
+                  name: faker.commerce.productName(),
+                  cost: faker.commerce.price(),
+                  startDate: faker.date.between("2020-05-01", "2020-05-30"),
+                  endDate: faker.date.between("2020-01-01", "2023-11-05"),
+                },
+              ],
+              "05/2019": [
+                {
+                  name: faker.commerce.productName(),
+                  cost: faker.commerce.price(),
+                  startDate: faker.date.between("2019-05-01", "2019-05-30"),
+                  endDate: faker.date.between("2020-01-01", "2023-11-05"),
+                },
+                {
+                  name: faker.commerce.productName(),
+                  cost: faker.commerce.price(),
+                  startDate: faker.date.between("2020-05-01", "2020-05-30"),
+                  endDate: faker.date.between("2020-01-01", "2023-11-05"),
+                },
+              ],
+            },
           },
           revenue: {
-            monthly: [
-              {
-                name: faker.commerce.productName(),
-                cost: faker.commerce.price(),
-                startDate: faker.date.between("2019-01-01", "2020-11-05"),
-                endDate: faker.date.between("2020-01-01", "2023-11-05"),
-              },
-              {
-                name: faker.commerce.productName(),
-                cost: faker.commerce.price(),
-                startDate: faker.date.between("2019-01-01", "2020-11-05"),
-                endDate: faker.date.between("2020-01-01", "2023-11-05"),
-              },
-              {
-                name: faker.commerce.productName(),
-                cost: faker.commerce.price(),
-                startDate: faker.date.between("2019-01-01", "2020-11-05"),
-                endDate: faker.date.between("2020-01-01", "2023-11-05"),
-              },
-              {
-                name: faker.commerce.productName(),
-                cost: faker.commerce.price(),
-                startDate: faker.date.between("2019-01-01", "2020-11-05"),
-                endDate: faker.date.between("2020-01-01", "2023-11-05"),
-              },
-              {
-                name: faker.commerce.productName(),
-                cost: faker.commerce.price(),
-                startDate: faker.date.between("2019-01-01", "2020-11-05"),
-                endDate: faker.date.between("2020-01-01", "2023-11-05"),
-              },
-              {
-                name: faker.commerce.productName(),
-                cost: faker.commerce.price(),
-                startDate: faker.date.between("2019-01-01", "2020-11-05"),
-                endDate: faker.date.between("2020-01-01", "2023-11-05"),
-              },
-            ],
-            oneTime: [
-              {
-                name: faker.commerce.productName(),
-                cost: faker.commerce.price(),
-                startDate: faker.date.between("2019-01-01", "2020-11-05"),
-              },
-              {
-                name: faker.commerce.productName(),
-                cost: faker.commerce.price(),
-                startDate: faker.date.between("2019-01-01", "2020-11-05"),
-              },
-              {
-                name: faker.commerce.productName(),
-                cost: faker.commerce.price(),
-                startDate: faker.date.between("2019-01-01", "2020-11-05"),
-              },
+            monthly: {
+              "12/2020": [
+                {
+                  name: faker.commerce.productName(),
+                  cost: faker.commerce.price(),
+                  startDate: faker.date.between("2020-12-01", "2020-12-30"),
+                  endDate: faker.date.between("2020-01-01", "2023-11-05"),
+                },
+                {
+                  name: faker.commerce.productName(),
+                  cost: faker.commerce.price(),
+                  startDate: faker.date.between("2020-12-01", "2020-12-30"),
+                  endDate: faker.date.between("2020-01-01", "2023-11-05"),
+                },
+              ],
+              "05/2020": [
+                {
+                  name: faker.commerce.productName(),
+                  cost: faker.commerce.price(),
+                  startDate: faker.date.between("2020-05-01", "2020-05-30"),
+                  endDate: faker.date.between("2020-01-01", "2023-11-05"),
+                },
+                {
+                  name: faker.commerce.productName(),
+                  cost: faker.commerce.price(),
+                  startDate: faker.date.between("2020-05-01", "2020-05-30"),
+                  endDate: faker.date.between("2020-01-01", "2023-11-05"),
+                },
+              ],
+              "05/2019": [
+                {
+                  name: faker.commerce.productName(),
+                  cost: faker.commerce.price(),
+                  startDate: faker.date.between("2019-05-01", "2019-05-30"),
+                  endDate: faker.date.between("2020-01-01", "2023-11-05"),
+                },
+                {
+                  name: faker.commerce.productName(),
+                  cost: faker.commerce.price(),
+                  startDate: faker.date.between("2020-05-01", "2020-05-30"),
+                  endDate: faker.date.between("2020-01-01", "2023-11-05"),
+                },
+              ],
+            },
 
-              {
-                name: faker.commerce.productName(),
-                cost: faker.commerce.price(),
-                startDate: faker.date.between("2019-01-01", "2020-11-05"),
-              },
-              {
-                name: faker.commerce.productName(),
-                cost: faker.commerce.price(),
-                startDate: faker.date.between("2019-01-01", "2020-11-05"),
-              },
-              {
-                name: faker.commerce.productName(),
-                cost: faker.commerce.price(),
-                startDate: faker.date.between("2019-01-01", "2020-11-05"),
-              },
-            ],
+            oneTime: {
+              "12/2020": [
+                {
+                  name: faker.commerce.productName(),
+                  cost: faker.commerce.price(),
+                  startDate: faker.date.between("2020-12-01", "2020-12-30"),
+                  endDate: faker.date.between("2020-01-01", "2023-11-05"),
+                },
+                {
+                  name: faker.commerce.productName(),
+                  cost: faker.commerce.price(),
+                  startDate: faker.date.between("2020-12-01", "2020-12-30"),
+                  endDate: faker.date.between("2020-01-01", "2023-11-05"),
+                },
+              ],
+              "05/2020": [
+                {
+                  name: faker.commerce.productName(),
+                  cost: faker.commerce.price(),
+                  startDate: faker.date.between("2020-05-01", "2020-05-30"),
+                  endDate: faker.date.between("2020-01-01", "2023-11-05"),
+                },
+                {
+                  name: faker.commerce.productName(),
+                  cost: faker.commerce.price(),
+                  startDate: faker.date.between("2020-05-01", "2020-05-30"),
+                  endDate: faker.date.between("2020-01-01", "2023-11-05"),
+                },
+              ],
+              "05/2019": [
+                {
+                  name: faker.commerce.productName(),
+                  cost: faker.commerce.price(),
+                  startDate: faker.date.between("2019-05-01", "2019-05-30"),
+                  endDate: faker.date.between("2020-01-01", "2023-11-05"),
+                },
+                {
+                  name: faker.commerce.productName(),
+                  cost: faker.commerce.price(),
+                  startDate: faker.date.between("2020-05-01", "2020-05-30"),
+                  endDate: faker.date.between("2020-01-01", "2023-11-05"),
+                },
+              ],
+            },
           },
         },
         income: {
-          monthly: [
-            {
-              name: faker.commerce.productName(),
-              cost: faker.commerce.price(),
-              startDate: faker.date.between("2019-01-01", "2020-11-05"),
-              endDate: faker.date.between("2020-01-01", "2023-11-05"),
-            },
-            {
-              name: faker.commerce.productName(),
-              cost: faker.commerce.price(),
-              startDate: faker.date.between("2019-01-01", "2020-11-05"),
-              endDate: faker.date.between("2020-01-01", "2023-11-05"),
-            },
-            {
-              name: faker.commerce.productName(),
-              cost: faker.commerce.price(),
-              startDate: faker.date.between("2019-01-01", "2020-11-05"),
-              endDate: faker.date.between("2020-01-01", "2023-11-05"),
-            },
-            {
-              name: faker.commerce.productName(),
-              cost: faker.commerce.price(),
-              startDate: faker.date.between("2019-01-01", "2020-11-05"),
-              endDate: faker.date.between("2020-01-01", "2023-11-05"),
-            },
-            {
-              name: faker.commerce.productName(),
-              cost: faker.commerce.price(),
-              startDate: faker.date.between("2019-01-01", "2020-11-05"),
-              endDate: faker.date.between("2020-01-01", "2023-11-05"),
-            },
-            {
-              name: faker.commerce.productName(),
-              cost: faker.commerce.price(),
-              startDate: faker.date.between("2019-01-01", "2020-11-05"),
-              endDate: faker.date.between("2020-01-01", "2023-11-05"),
-            },
-          ],
-          oneTime: [
-            {
-              name: faker.commerce.productName(),
-              cost: faker.commerce.price(),
-              startDate: faker.date.between("2019-01-01", "2020-11-05"),
-            },
-            {
-              name: faker.commerce.productName(),
-              cost: faker.commerce.price(),
-              startDate: faker.date.between("2019-01-01", "2020-11-05"),
-            },
-            {
-              name: faker.commerce.productName(),
-              cost: faker.commerce.price(),
-              startDate: faker.date.between("2019-01-01", "2020-11-05"),
-            },
+          monthly: {
+            "12/2020": [
+              {
+                name: faker.commerce.productName(),
+                cost: faker.commerce.price(),
+                startDate: faker.date.between("2020-12-01", "2020-12-30"),
+                endDate: faker.date.between("2020-01-01", "2023-11-05"),
+              },
+              {
+                name: faker.commerce.productName(),
+                cost: faker.commerce.price(),
+                startDate: faker.date.between("2020-12-01", "2020-12-30"),
+                endDate: faker.date.between("2020-01-01", "2023-11-05"),
+              },
+            ],
+            "05/2020": [
+              {
+                name: faker.commerce.productName(),
+                cost: faker.commerce.price(),
+                startDate: faker.date.between("2020-05-01", "2020-05-30"),
+                endDate: faker.date.between("2020-01-01", "2023-11-05"),
+              },
+              {
+                name: faker.commerce.productName(),
+                cost: faker.commerce.price(),
+                startDate: faker.date.between("2020-05-01", "2020-05-30"),
+                endDate: faker.date.between("2020-01-01", "2023-11-05"),
+              },
+            ],
+            "05/2019": [
+              {
+                name: faker.commerce.productName(),
+                cost: faker.commerce.price(),
+                startDate: faker.date.between("2019-05-01", "2019-05-30"),
+                endDate: faker.date.between("2020-01-01", "2023-11-05"),
+              },
+              {
+                name: faker.commerce.productName(),
+                cost: faker.commerce.price(),
+                startDate: faker.date.between("2020-05-01", "2020-05-30"),
+                endDate: faker.date.between("2020-01-01", "2023-11-05"),
+              },
+            ],
+          },
 
-            {
-              name: faker.commerce.productName(),
-              cost: faker.commerce.price(),
-              startDate: faker.date.between("2019-01-01", "2020-11-05"),
-            },
-            {
-              name: faker.commerce.productName(),
-              cost: faker.commerce.price(),
-              startDate: faker.date.between("2019-01-01", "2020-11-05"),
-            },
-            {
-              name: faker.commerce.productName(),
-              cost: faker.commerce.price(),
-              startDate: faker.date.between("2019-01-01", "2020-11-05"),
-            },
-          ],
+          oneTime: {
+            "12/2020": [
+              {
+                name: faker.commerce.productName(),
+                cost: faker.commerce.price(),
+                startDate: faker.date.between("2020-12-01", "2020-12-30"),
+                endDate: faker.date.between("2020-01-01", "2023-11-05"),
+              },
+              {
+                name: faker.commerce.productName(),
+                cost: faker.commerce.price(),
+                startDate: faker.date.between("2020-12-01", "2020-12-30"),
+                endDate: faker.date.between("2020-01-01", "2023-11-05"),
+              },
+            ],
+            "05/2020": [
+              {
+                name: faker.commerce.productName(),
+                cost: faker.commerce.price(),
+                startDate: faker.date.between("2020-05-01", "2020-05-30"),
+                endDate: faker.date.between("2020-01-01", "2023-11-05"),
+              },
+              {
+                name: faker.commerce.productName(),
+                cost: faker.commerce.price(),
+                startDate: faker.date.between("2020-05-01", "2020-05-30"),
+                endDate: faker.date.between("2020-01-01", "2023-11-05"),
+              },
+            ],
+            "05/2019": [
+              {
+                name: faker.commerce.productName(),
+                cost: faker.commerce.price(),
+                startDate: faker.date.between("2019-05-01", "2019-05-30"),
+                endDate: faker.date.between("2020-01-01", "2023-11-05"),
+              },
+              {
+                name: faker.commerce.productName(),
+                cost: faker.commerce.price(),
+                startDate: faker.date.between("2020-05-01", "2020-05-30"),
+                endDate: faker.date.between("2020-01-01", "2023-11-05"),
+              },
+            ],
+          },
         },
       },
     };
