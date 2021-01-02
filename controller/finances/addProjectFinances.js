@@ -4,20 +4,25 @@ async function addProjectFinances(req, res) {
   try {
     const propertyUuid = req.params.property_id;
     const financesData = req.body;
-    const property = await Property.findOneAndUpdate({ uuid: propertyUuid });
 
+    // this needs working on
     const financeDataToAdd = setFinanceData(financesData);
+    // is the object we need - from the original property data
+    const update = { finances: { test: "test" } };
+    let doc = await Property.findOneAndUpdate({ _id: propertyUuid }, update, { new: true }).exec();
 
-    property.finances = { ...property.finances, ...financeDataToAdd };
+    console.log(doc, "keys");
+    // property = { ...property.finances, ...financeDataToAdd };
+    // property = { ...property, test: "test" };
 
-    await property.save(function (err) {
-      if (err) console.log(err);
+    // await property.save(function (err) {
+    //   if (err) console.log(err);
 
-      console.log("projectsExpenses successfully saved.");
-      res.send({ msg: "success" });
-    });
+    //   console.log("projectsExpenses successfully saved.");
+    //   res.send({ msg: "success" });
+    // });
   } catch (e) {
-    console.log(e);
+    console.log(e);UI
   }
 }
 
