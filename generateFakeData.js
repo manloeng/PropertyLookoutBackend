@@ -34,7 +34,7 @@ function getTestData(req, res) {
         tenure: "freehold",
       },
       currency: "£",
-      propertyType: "Flat",
+      propertyType: "flat",
       propertyRooms: faker.random.number({
         min: 1,
         max: 5,
@@ -79,7 +79,7 @@ function getTestData(req, res) {
                   endDate: new Date(faker.date.between("2020-01-01", "2023-11-05")),
                 },
               ],
-              "05/2020": [
+              "5/2020": [
                 {
                   name: faker.commerce.productName(),
                   cost: faker.commerce.price(),
@@ -93,7 +93,7 @@ function getTestData(req, res) {
                   endDate: new Date(faker.date.between("2020-01-01", "2023-11-05")),
                 },
               ],
-              "05/2019": [
+              "5/2019": [
                 {
                   name: faker.commerce.productName(),
                   cost: faker.commerce.price(),
@@ -124,7 +124,7 @@ function getTestData(req, res) {
                   endDate: new Date(faker.date.between("2020-01-01", "2023-11-05")),
                 },
               ],
-              "05/2020": [
+              "5/2020": [
                 {
                   name: faker.commerce.productName(),
                   cost: faker.commerce.price(),
@@ -138,7 +138,7 @@ function getTestData(req, res) {
                   endDate: new Date(faker.date.between("2020-01-01", "2023-11-05")),
                 },
               ],
-              "05/2019": [
+              "5/2019": [
                 {
                   name: faker.commerce.productName(),
                   cost: faker.commerce.price(),
@@ -170,7 +170,7 @@ function getTestData(req, res) {
                   endDate: new Date(faker.date.between("2020-01-01", "2023-11-05")),
                 },
               ],
-              "05/2020": [
+              "5/2020": [
                 {
                   name: faker.commerce.productName(),
                   cost: faker.commerce.price(),
@@ -184,7 +184,7 @@ function getTestData(req, res) {
                   endDate: new Date(faker.date.between("2020-01-01", "2023-11-05")),
                 },
               ],
-              "05/2019": [
+              "5/2019": [
                 {
                   name: faker.commerce.productName(),
                   cost: faker.commerce.price(),
@@ -215,7 +215,7 @@ function getTestData(req, res) {
                   endDate: new Date(faker.date.between("2020-01-01", "2023-11-05")),
                 },
               ],
-              "05/2020": [
+              "5/2020": [
                 {
                   name: faker.commerce.productName(),
                   cost: faker.commerce.price(),
@@ -229,7 +229,7 @@ function getTestData(req, res) {
                   endDate: new Date(faker.date.between("2020-01-01", "2023-11-05")),
                 },
               ],
-              "05/2019": [
+              "5/2019": [
                 {
                   name: faker.commerce.productName(),
                   cost: faker.commerce.price(),
@@ -262,7 +262,7 @@ function getTestData(req, res) {
                 endDate: new Date(faker.date.between("2020-01-01", "2023-11-05")),
               },
             ],
-            "05/2020": [
+            "5/2020": [
               {
                 name: faker.commerce.productName(),
                 cost: faker.commerce.price(),
@@ -276,7 +276,7 @@ function getTestData(req, res) {
                 endDate: new Date(faker.date.between("2020-01-01", "2023-11-05")),
               },
             ],
-            "05/2019": [
+            "5/2019": [
               {
                 name: faker.commerce.productName(),
                 cost: faker.commerce.price(),
@@ -317,7 +317,7 @@ function getTestData(req, res) {
                 endDate: new Date(faker.date.between("2020-01-01", "2023-11-05")),
               },
             ],
-            "05/2020": [
+            "5/2020": [
               {
                 name: faker.commerce.productName(),
                 cost: faker.commerce.price(),
@@ -331,7 +331,7 @@ function getTestData(req, res) {
                 endDate: new Date(faker.date.between("2020-01-01", "2023-11-05")),
               },
             ],
-            "05/2019": [
+            "5/2019": [
               {
                 name: faker.commerce.productName(),
                 cost: faker.commerce.price(),
