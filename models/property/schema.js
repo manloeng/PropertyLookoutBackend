@@ -2,6 +2,9 @@ const mongoose = require("mongoose");
 
 const Schema = mongoose.Schema;
 let PropertiesSchema = new Schema({
+  uuid: {
+    type: String,
+  },
   propertyName: {
     type: String,
   },
@@ -115,16 +118,10 @@ let PropertiesSchema = new Schema({
       },
     },
   },
-  broadbandSpeed: {
-    type: String,
-  },
   propertySaleHistory: {
     type: Number,
   },
-  estimatedPriceToDate: {
-    type: Number,
-  },
-  expenses: {
+  finances: {
     type: Object,
   },
 });
