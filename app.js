@@ -6,6 +6,7 @@ const cors = require("cors");
 const apiRouter = require("./routes/api");
 const { routeNotFound, handleCustomErrors, handle500 } = require("./errors");
 const getTestData = require("./generateFakeData");
+const getTestFinanceData = require("./generateFakeFinanceData");
 
 require("dotenv").config();
 
@@ -27,6 +28,7 @@ app.use(express.json());
 app.use("/api", apiRouter);
 
 app.get("/test", getTestData);
+app.get("/test2", getTestFinanceData);
 
 app.all("/*", routeNotFound);
 
