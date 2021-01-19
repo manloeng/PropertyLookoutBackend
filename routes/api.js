@@ -1,5 +1,6 @@
 const apiRouter = require("express").Router();
 const propertyRouter = require("./propertyRouter");
+const financeRouter = require("./financeRouter");
 
 const { methodNotAllowed } = require("../errors");
 
@@ -9,5 +10,6 @@ apiRouter
   .all(methodNotAllowed);
 
 apiRouter.use("/property", propertyRouter);
+apiRouter.use("/finance", financeRouter);
 
 module.exports = apiRouter;
