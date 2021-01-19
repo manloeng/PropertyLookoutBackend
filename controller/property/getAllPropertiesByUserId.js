@@ -3,7 +3,8 @@ const Properties = require("../../models/property/model.js");
 async function getAllPropertiesByUserId(req, res) {
   try {
     const { userId } = req.query;
-    const properties = await Properties.find({ uuid: userId });
+
+    const properties = await Properties.find({ landlord: userId });
 
     return res.status(200).json(properties);
   } catch (err) {
