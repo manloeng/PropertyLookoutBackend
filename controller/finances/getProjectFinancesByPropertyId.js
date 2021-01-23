@@ -16,7 +16,12 @@ async function getProjectFinancesByUserId(req, res) {
     });
 
     Promise.all(finances).then((finances) => {
-      return res.status(200).json(finances);
+      const filteredFiances = finances.filter((finance) => {
+        const keys = Object.keys(finance);
+        if (keys.length) return finance;
+      });
+
+      return res.status(200).json(filteredFiances);
     });
   } catch (err) {
     console.log(err);
