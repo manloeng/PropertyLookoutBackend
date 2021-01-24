@@ -1,28 +1,57 @@
-const Property = require("../../models/property/model");
+const Finance = require("../../models/finances/model");
 const mongoose = require("mongoose");
 
 async function deleteProjectFinances(req, res) {
   try {
-    const property_idString = req.params.property_id;
-    const property_id = mongoose.Types.ObjectId(property_idString);
+    const propertyId = req.params.propertyId;
     const { property, costPayload } = req.body;
 
     const updateString = getUpdateString(costPayload);
     const updateArray = getUpdatedResults(property, costPayload);
 
-    const newPropertyData = await Property.findOneAndUpdate(
-      { _id: property_id },
+    const newFinanceData = await Finance.findOneAndUpdate(
+      { property: propertyId },
       { $set: { [updateString]: updateArray } },
-      { upsert: true, new: true, strict: false }
+      { strict: false }
     ).exec();
 
-    return res.status(201).json(newPropertyData);
+    return res.status(201).json(newFinanceData);
   } catch (e) {
     console.log(e);
   }
 }
 
 module.exports = deleteProjectFinances;
+
+function getUpdateString(costPayload) {
+  const { name, finance } = costPayload;
+  const financeType = name;
+  let dateKey = getDateKey(new Date(finance.startDate));
+
+  let updateString;
+  if (financeType === "Monthly Incomes") {
+    updateString = "income.monthly." + dateKey;
+  } else if (financeType === "One Time Incomes") {
+    updateString = "income.oneTime." + dateKey;
+  } else if (financeType === "Monthly Capital Expenses") {
+    updateString = "expense.capital.monthly." + dateKey;
+  } else if (financeType === "One Time Capital Expenses") {
+    updateString = "expense.capital.oneTime." + dateKey;
+  } else if (financeType === "Monthly Revenue Expenses") {
+    updateString = "expense.revenue.monthly." + dateKey;
+  } else if (financeType === "One Time Revenue Expenses") {
+    updateString = "expense.revenue.oneTime." + dateKey;
+  }
+
+  return updateString;
+}
+
+function getDateKey(date) {
+  const year = date.getFullYear();
+  const month = date.getMonth();
+
+  return `${month + 1}/${year}`;
+}
 
 function getUpdatedResults(property, costPayload) {
   const { finance } = costPayload;
@@ -46,48 +75,18 @@ function getFinanceArray(property, costPayload) {
 
   let monthlyFinanceArray;
   if (financeType === "Monthly Incomes") {
-    monthlyFinanceArray = property.finances.income.monthly[dateKey];
+    monthlyFinanceArray = property.income.monthly[dateKey];
   } else if (financeType === "One Time Incomes") {
-    monthlyFinanceArray = property.finances.income.oneTime[dateKey];
+    monthlyFinanceArray = property.income.oneTime[dateKey];
   } else if (financeType === "Monthly Capital Expenses") {
-    monthlyFinanceArray = property.finances.expense.capital.monthly[dateKey];
+    monthlyFinanceArray = property.expense.capital.monthly[dateKey];
   } else if (financeType === "One Time Capital Expenses") {
-    monthlyFinanceArray = property.finances.expense.capital.oneTime[dateKey];
+    monthlyFinanceArray = property.expense.capital.oneTime[dateKey];
   } else if (financeType === "Monthly Revenue Expenses") {
-    monthlyFinanceArray = property.finances.expense.revenue.monthly[dateKey];
+    monthlyFinanceArray = property.expense.revenue.monthly[dateKey];
   } else if (financeType === "One Time Revenue Expenses") {
-    monthlyFinanceArray = property.finances.expense.revenue.oneTime[dateKey];
+    monthlyFinanceArray = property.expense.revenue.oneTime[dateKey];
   }
 
   return monthlyFinanceArray;
-}
-
-function getUpdateString(costPayload) {
-  const { name, finance } = costPayload;
-  const financeType = name;
-  let dateKey = getDateKey(new Date(finance.startDate));
-
-  let updateString;
-  if (financeType === "Monthly Incomes") {
-    updateString = "finances.income.monthly." + dateKey;
-  } else if (financeType === "One Time Incomes") {
-    updateString = "finances.income.oneTime." + dateKey;
-  } else if (financeType === "Monthly Capital Expenses") {
-    updateString = "finances.expense.capital.monthly." + dateKey;
-  } else if (financeType === "One Time Capital Expenses") {
-    updateString = "finances.expense.capital.oneTime." + dateKey;
-  } else if (financeType === "Monthly Revenue Expenses") {
-    updateString = "finances.expense.revenue.monthly." + dateKey;
-  } else if (financeType === "One Time Revenue Expenses") {
-    updateString = "finances.expense.revenue.oneTime." + dateKey;
-  }
-
-  return updateString;
-}
-
-function getDateKey(date) {
-  const year = date.getFullYear();
-  const month = date.getMonth();
-
-  return `${month + 1}/${year}`;
 }
