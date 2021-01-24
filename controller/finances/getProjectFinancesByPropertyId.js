@@ -1,4 +1,3 @@
-const { finance } = require("faker");
 const Properties = require("../../models/property/model.js");
 const Finances = require("../../models/finances/model.js");
 
