@@ -1,5 +1,4 @@
 const Finance = require("../../models/finances/model");
-const mongoose = require("mongoose");
 
 async function deleteProjectFinances(req, res) {
   try {
@@ -9,13 +8,21 @@ async function deleteProjectFinances(req, res) {
     const updateString = getUpdateString(costPayload);
     const updateArray = getUpdatedResults(property, costPayload);
 
-    const newFinanceData = await Finance.findOneAndUpdate(
-      { property: propertyId },
-      { $set: { [updateString]: updateArray } },
-      { strict: false }
-    ).exec();
+    const finance = await Finance.findOne({ property: propertyId });
+    if (Object.keys(finance).length) {
+      const updateCheck = await Finance.updateOne(
+        { property: propertyId },
+        { $set: { [updateString]: updateArray } },
+        { strict: false, upsert: true }
+      ).exec();
 
-    return res.status(201).json(newFinanceData);
+      console.log(updateCheck.ok, "update check");
+
+      const newFinance = await Finance.findOne({ property: propertyId });
+      return res.status(201).json(newFinance);
+    } else {
+      return res.status(404).json({ msg: "finance not found" });
+    }
   } catch (e) {
     console.log(e);
   }
@@ -73,7 +80,7 @@ function getFinanceArray(property, costPayload) {
   const financeType = name;
   let dateKey = getDateKey(new Date(finance.startDate));
 
-  let monthlyFinanceArray;
+  let monthlyFinanceArray = {};
   if (financeType === "Monthly Incomes") {
     monthlyFinanceArray = property.income.monthly[dateKey];
   } else if (financeType === "One Time Incomes") {
