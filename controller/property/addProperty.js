@@ -1,18 +1,27 @@
 const Property = require("../../models/property/model.js");
 
 function addProperty(req, res) {
-  const content = req.body;
+  try {
+    const { uuid, ...restOfData } = req.body;
 
-  var property = new Property({
-    ...content,
-  });
+    //@todo need to add validation on uuid
+    //@todo need to add validation on postCode - further down the line
 
-  property.save(function (err) {
-    if (err) console.log(err);
+    // if (uuid.length === 16){}
+    var property = new Property({
+      landlord: uuid,
+      restOfData,
+    });
 
-    console.log("property successfully saved.");
-    res.send({ msg: "success" });
-  });
+    property.save(function (err) {
+      if (err) console.log(err);
+
+      console.log("property successfully saved.");
+      res.send({ msg: "success" });
+    });
+  } catch (e) {
+    res.send("error...");
+  }
 }
 
 module.exports = addProperty;
