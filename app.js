@@ -10,16 +10,20 @@ const getTestFinanceData = require("./generateFakeFinanceData");
 
 require("dotenv").config();
 
+function connectToMongoose() {
+  mongoose
+    .connect(process.env.uri, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    })
+    .then(() => {
+      console.log("MongoDB Connected…");
+    })
+    .catch((err) => console.log(err));
+}
+
 mongoose.set("useFindAndModify", false);
-mongoose
-  .connect(process.env.uri, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
-  .then(() => {
-    console.log("MongoDB Connected…");
-  })
-  .catch((err) => console.log(err));
+connectToMongoose();
 
 app.use(cors());
 app.use(express.static("public"));
