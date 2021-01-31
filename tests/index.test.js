@@ -2,22 +2,35 @@ import axios from "axios";
 axios.defaults.baseURL = "http://localhost:3030";
 const mongoose = require("mongoose");
 
+async function resetDb() {
+  await mongoose.connect("mongodb://localhost:27017/" + MARLON_NS, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  });
+
+  await dropCollections();
+}
+
+async function dropCollections() {
+  const collections = ["publication", "section", "spreads", "pages", "products"];
+
+  const currentCollections = await mongoose.connection.db.listCollections().toArray();
+
+  const collectionNames = currentCollections.map((collection) => collection.name);
+
+  collections.forEach(async (collection) => {
+    if (collectionNames.includes(collection)) {
+      await mongoose.connection.db.dropCollection(collection);
+    }
+  });
+}
+
+async function populateCollections() {}
 // Requires serverless to be running
 describe("Api Test for the Backend", () => {
-  afterEach(async () => {
-    await mongoose.connect(process.env.uri, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    });
-
-    const collections = await mongoose.connection.db.listCollections().toArray();
-
-    const collectionNames = collections.map((collection) => collection.name);
-    const publicationExist = collectionNames.includes("property");
-    if (publicationExist) {
-      await mongoose.connection.db.dropCollection("property");
-    }
-    await mongoose.connection.close();
+  beforeEach(async () => {
+    await resetDb();
+    await populateCollections();
   });
 
   describe("Api Test For Base Route", () => {

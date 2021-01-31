@@ -22,7 +22,8 @@ async function addProjectFinances(req, res) {
     //   res.send({ msg: "success" });
     // });
   } catch (e) {
-    console.log(e);UI
+    console.log(e);
+    UI;
   }
 }
 

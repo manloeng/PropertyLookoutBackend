@@ -4,7 +4,8 @@ const getAllPropertiesByUserId = require("../controller/property/getAllPropertie
 const getPropertyByPropertyId = require("../controller/property/getPropertyByPropertyId");
 const addProjectFinances = require("../controller/finances/addProjectFinances");
 const deleteProjectFinances = require("../controller/finances/deleteProjectFinances");
-const getPropertyFinanceByPropertyId = require("../controller/property&finances/getPropertyFinanceByPropertyId");
+const getProjectFinanceByPropertyId = require("../controller/finances/getProjectFinanceByPropertyId");
+// const getPropertyFinanceByPropertyId = require("../controller/property&finances/getPropertyFinanceByPropertyId");
 const { methodNotAllowed } = require("../errors");
 
 // should get all properties without showing users id
@@ -12,7 +13,7 @@ propertyRouter.route("/").get(getAllPropertiesByUserId).post(addProperty).all(me
 propertyRouter.route("/:property_id").get(getPropertyByPropertyId).all(methodNotAllowed);
 propertyRouter
   .route("/:propertyId/finance")
-  .get(getPropertyFinanceByPropertyId)
+  .get(getProjectFinanceByPropertyId)
   .post(addProjectFinances)
   .patch(deleteProjectFinances)
   .all(methodNotAllowed);
