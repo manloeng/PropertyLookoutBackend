@@ -1,93 +1,70 @@
-const Property = require("../../models/property/model");
+const Finance = require("../../models/finances/model");
 
+// @todo - need to add form validation here!
 async function addProjectFinances(req, res) {
   try {
-    const propertyUuid = req.params.property_id;
+    const { propertyId } = req.params;
     const financesData = req.body;
+    const newPayloads = setPayloadData(financesData);
 
-    // this needs working on
-    const financeDataToAdd = setFinanceData(financesData);
-    // is the object we need - from the original property data
-    const update = { finances: { test: "test" } };
-    let doc = await Property.findOneAndUpdate({ _id: propertyUuid }, update, { new: true }).exec();
+    let propertyFinance = await Finance.findOne({ property: propertyId }).exec();
 
-    console.log(doc, "keys");
-    // property = { ...property.finances, ...financeDataToAdd };
-    // property = { ...property, test: "test" };
+    newPayloads.forEach(async (payload, index) => {
+      const { key, value } = payload;
+      const splitKey = key.split(".");
 
-    // await property.save(function (err) {
-    //   if (err) console.log(err);
+      if (propertyFinance) {
+        let finalItemArray = propertyFinance[splitKey[0]][splitKey[1]][splitKey[2]];
+        if (finalItemArray) {
+          await Finance.findOneAndUpdate(
+            { property: propertyId },
+            { $push: { [key]: value } },
+            { upsert: true }
+          ).exec();
+        }
+      } else {
+        await Finance.findOneAndUpdate({ property: propertyId }, { $set: { [key]: [value] } }, { upsert: true }).exec();
+      }
+    });
 
-    //   console.log("projectsExpenses successfully saved.");
-    //   res.send({ msg: "success" });
-    // });
+    res.send({ msg: "success" });
   } catch (e) {
     console.log(e);
-    UI;
   }
 }
 
 module.exports = addProjectFinances;
 
-function setFinanceData(financesData) {
-  // finances -> financeType -> expenseType -> recurrence -> dateKey -> finance data
-  let finances = {
-    expense: { capital: { monthly: {}, oneTime: {} }, revenue: { monthly: {}, oneTime: {} } },
-    income: { monthly: {}, oneTime: {} },
-  };
+function setPayloadData(financesData) {
+  const newPayloads = financesData.map((finance) => {
+    let dateKey = getDateKey(new Date(finance.startDate));
+    const { financeType, recurrence, expenseType, ...restOfData } = finance;
 
-  financesData.map((finance) => {
-    const {
-      financeType,
-      recurrence,
-      expenseType,
-      financeName,
-      financeCost,
-      financeStartDate,
-      financeEndDate = null,
-    } = finance;
-    if (financeType === "income") {
-      const dateArray = financeStartDate.split("-");
-      const dateKey = `${dateArray[1]}/${dateArray[0]}`;
-
-      const dateKeys = Object.keys(finances[financeType][recurrence]);
-      // if key exists add to the object
-      if (dateKeys.includes(dateKey)) {
-        finances[financeType][recurrence][dateKey] = {
-          ...finances[financeType][recurrence][dateKey],
-          name: financeName,
-          cost: financeCost,
-          startDate: financeStartDate,
-          endDate: financeEndDate,
-        };
-      } else {
-        finances[financeType][recurrence] = {
-          ...finances[financeType][recurrence],
-          [dateKey]: { name: financeName, cost: financeCost, startDate: financeStartDate, endDate: financeEndDate },
-        };
-      }
-    } else {
-      const dateArray = financeStartDate.split("-");
-      const dateKey = `${dateArray[1]}/${dateArray[0]}`;
-
-      const dateKeys = Object.keys(finances[financeType][expenseType][recurrence]);
-      // if key exists add to the object
-      if (dateKeys.includes(dateKey)) {
-        finances[financeType][expenseType][recurrence][dateKey] = {
-          ...finances[financeType][expenseType][recurrence][dateKey],
-          name: financeName,
-          cost: financeCost,
-          startDate: financeStartDate,
-          endDate: financeEndDate,
-        };
-      } else {
-        finances[financeType][expenseType][recurrence] = {
-          ...finances[financeType][expenseType][recurrence],
-          [dateKey]: { name: financeName, cost: financeCost, startDate: financeStartDate, endDate: financeEndDate },
-        };
-      }
+    let updateString = "";
+    if (financeType === "income" && recurrence === "monthly") {
+      updateString = "income.monthly." + dateKey;
+    } else if (financeType === "income" && recurrence === "oneTime") {
+      updateString = "income.oneTime." + dateKey;
+    } else if (financeType === "expense" && recurrence === "monthly" && expenseType === "capital") {
+      updateString = "expense.capital.monthly." + dateKey;
+    } else if (financeType === "expense" && recurrence === "oneTime" && expenseType === "capital") {
+      updateString = "expense.capital.oneTime." + dateKey;
+    } else if (financeType === "expense" && recurrence === "monthly" && expenseType === "revenue") {
+      updateString = "expense.revenue.monthly." + dateKey;
+    } else if (financeType === "expense" && recurrence === "oneTime" && expenseType === "revenue") {
+      updateString = "expense.revenue.oneTime." + dateKey;
     }
+
+    const newPayload = { key: updateString, value: { ...restOfData } };
+    return newPayload;
   });
 
-  return finances;
+  return newPayloads;
+}
+
+function getDateKey(date) {
+  const year = date.getFullYear();
+  const month = date.getMonth();
+
+  return `${month + 1}/${year}`;
 }
