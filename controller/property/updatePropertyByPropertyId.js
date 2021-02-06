@@ -8,7 +8,7 @@ async function updatePropertyByPropertyId(req, res) {
     const property = await Property.findByIdAndUpdate(
       { _id: propertyId },
       { $set: data },
-      { strict: false, upsert: true, multi: true }
+      { strict: false, upsert: true, multi: true, new: true }
     ).exec();
 
     if (property) {
