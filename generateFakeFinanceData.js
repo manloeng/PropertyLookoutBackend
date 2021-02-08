@@ -6,8 +6,8 @@ function generateFakeFinanceData(req, res) {
       min: 400,
       max: 1200,
     }),
-    startDate: new Date(faker.date.between("2019-05-01", "2019-05-30")),
-    endDate: new Date(faker.date.between("2020-01-01", "2023-11-05")),
+    startDate: new Date(faker.date.between("2021-01-01", "2021-03-30")),
+    endDate: new Date(faker.date.between("2022-01-01", "2023-11-05")),
   };
 
   const copyRent = { ...rent };
@@ -20,26 +20,34 @@ function generateFakeFinanceData(req, res) {
         expense: {
           capital: {
             monthly: {
-              "1/2020": [
+              "1/2021": [
                 {
                   name: faker.commerce.productName(),
                   cost: faker.commerce.price(),
-                  startDate: new Date(faker.date.between("2020-12-01", "2020-12-30")),
-                  endDate: new Date(faker.date.between("2020-01-01", "2023-11-05")),
+                  startDate: new Date(faker.date.between("2021-01-01", "2021-01-30")),
+                  endDate: new Date(faker.date.between("2022-01-01", "2023-11-05")),
                 },
               ],
-              "12/2020": [
+              "12/2021": [
                 {
                   name: faker.commerce.productName(),
                   cost: faker.commerce.price(),
-                  startDate: new Date(faker.date.between("2020-12-01", "2020-12-30")),
-                  endDate: new Date(faker.date.between("2020-01-01", "2023-11-05")),
+                  startDate: new Date(faker.date.between("2021-12-01", "2021-12-30")),
+                  endDate: new Date(faker.date.between("2022-01-01", "2023-11-05")),
                 },
                 {
                   name: faker.commerce.productName(),
                   cost: faker.commerce.price(),
-                  startDate: new Date(faker.date.between("2020-12-01", "2020-12-30")),
-                  endDate: new Date(faker.date.between("2020-01-01", "2023-11-05")),
+                  startDate: new Date(faker.date.between("2021-12-01", "2021-12-30")),
+                  endDate: new Date(faker.date.between("2022-01-01", "2023-11-05")),
+                },
+              ],
+              "5/2021": [
+                {
+                  name: faker.commerce.productName(),
+                  cost: faker.commerce.price(),
+                  startDate: new Date(faker.date.between("2021-05-01", "2021-05-30")),
+                  endDate: new Date(faker.date.between("2022-01-01", "2023-11-05")),
                 },
               ],
               "5/2020": [
@@ -47,21 +55,7 @@ function generateFakeFinanceData(req, res) {
                   name: faker.commerce.productName(),
                   cost: faker.commerce.price(),
                   startDate: new Date(faker.date.between("2020-05-01", "2020-05-30")),
-                  endDate: new Date(faker.date.between("2020-01-01", "2023-11-05")),
-                },
-                {
-                  name: faker.commerce.productName(),
-                  cost: faker.commerce.price(),
-                  startDate: new Date(faker.date.between("2020-05-01", "2020-05-30")),
-                  endDate: new Date(faker.date.between("2020-01-01", "2023-11-05")),
-                },
-              ],
-              "5/2019": [
-                {
-                  name: faker.commerce.productName(),
-                  cost: faker.commerce.price(),
-                  startDate: new Date(faker.date.between("2019-05-01", "2019-05-30")),
-                  endDate: new Date(faker.date.between("2020-01-01", "2023-11-05")),
+                  endDate: new Date(faker.date.between("2021-01-01", "2023-11-05")),
                 },
               ],
             },
@@ -74,20 +68,8 @@ function generateFakeFinanceData(req, res) {
                   startDate: new Date(faker.date.between("2020-12-01", "2020-12-30")),
                   endDate: new Date(faker.date.between("2020-01-01", "2023-11-05")),
                 },
-                {
-                  name: faker.commerce.productName(),
-                  cost: faker.commerce.price(),
-                  startDate: new Date(faker.date.between("2020-12-01", "2020-12-30")),
-                  endDate: new Date(faker.date.between("2020-01-01", "2023-11-05")),
-                },
               ],
               "5/2020": [
-                {
-                  name: faker.commerce.productName(),
-                  cost: faker.commerce.price(),
-                  startDate: new Date(faker.date.between("2020-05-01", "2020-05-30")),
-                  endDate: new Date(faker.date.between("2020-01-01", "2023-11-05")),
-                },
                 {
                   name: faker.commerce.productName(),
                   cost: faker.commerce.price(),
@@ -107,32 +89,32 @@ function generateFakeFinanceData(req, res) {
           },
           revenue: {
             monthly: {
-              "12/2020": [
+              "12/2021": [
                 {
                   name: faker.commerce.productName(),
                   cost: faker.commerce.price(),
-                  startDate: new Date(faker.date.between("2020-12-01", "2020-12-30")),
-                  endDate: new Date(faker.date.between("2020-01-01", "2023-11-05")),
+                  startDate: new Date(faker.date.between("2021-12-01", "2021-12-30")),
+                  endDate: new Date(faker.date.between("2022-01-01", "2023-11-05")),
                 },
                 {
                   name: faker.commerce.productName(),
                   cost: faker.commerce.price(),
-                  startDate: new Date(faker.date.between("2020-12-01", "2020-12-30")),
-                  endDate: new Date(faker.date.between("2020-01-01", "2023-11-05")),
+                  startDate: new Date(faker.date.between("2021-12-01", "2021-12-30")),
+                  endDate: new Date(faker.date.between("2022-01-01", "2023-11-05")),
                 },
               ],
-              "5/2020": [
+              "5/2021": [
                 {
                   name: faker.commerce.productName(),
                   cost: faker.commerce.price(),
-                  startDate: new Date(faker.date.between("2020-05-01", "2020-05-30")),
-                  endDate: new Date(faker.date.between("2020-01-01", "2023-11-05")),
+                  startDate: new Date(faker.date.between("2021-05-01", "2021-05-30")),
+                  endDate: new Date(faker.date.between("2022-01-01", "2023-11-05")),
                 },
                 {
                   name: faker.commerce.productName(),
                   cost: faker.commerce.price(),
-                  startDate: new Date(faker.date.between("2020-05-01", "2020-05-30")),
-                  endDate: new Date(faker.date.between("2020-01-01", "2023-11-05")),
+                  startDate: new Date(faker.date.between("2021-05-01", "2021-05-30")),
+                  endDate: new Date(faker.date.between("2022-01-01", "2023-11-05")),
                 },
               ],
               "5/2019": [
@@ -187,25 +169,39 @@ function generateFakeFinanceData(req, res) {
         },
         income: {
           monthly: {
-            "12/2020": [
+            "12/2021": [
               {
                 name: faker.commerce.productName(),
                 cost: faker.commerce.price(),
-                startDate: new Date(faker.date.between("2020-12-01", "2020-12-30")),
-                endDate: new Date(faker.date.between("2020-01-01", "2023-11-05")),
+                startDate: new Date(faker.date.between("2021-12-01", "2021-12-30")),
+                endDate: new Date(faker.date.between("2022-01-01", "2023-11-05")),
               },
               {
                 name: faker.commerce.productName(),
                 cost: faker.commerce.price(),
-                startDate: new Date(faker.date.between("2020-12-01", "2020-12-30")),
-                endDate: new Date(faker.date.between("2020-01-01", "2023-11-05")),
+                startDate: new Date(faker.date.between("2021-12-01", "2021-12-30")),
+                endDate: new Date(faker.date.between("2022-01-01", "2023-11-05")),
               },
             ],
-            "5/2020": [
+            "5/2021": [
               {
                 name: faker.commerce.productName(),
                 cost: faker.commerce.price(),
-                startDate: new Date(faker.date.between("2020-05-01", "2020-05-30")),
+                startDate: new Date(faker.date.between("2021-05-01", "2021-05-30")),
+                endDate: new Date(faker.date.between("2022-01-01", "2023-11-05")),
+              },
+              {
+                name: faker.commerce.productName(),
+                cost: faker.commerce.price(),
+                startDate: new Date(faker.date.between("2021-05-01", "2021-05-30")),
+                endDate: new Date(faker.date.between("2022-01-01", "2023-11-05")),
+              },
+            ],
+            "7/2020": [
+              {
+                name: faker.commerce.productName(),
+                cost: faker.commerce.price(),
+                startDate: new Date(faker.date.between("2020-07-01", "2020-07-30")),
                 endDate: new Date(faker.date.between("2020-01-01", "2023-11-05")),
               },
               {

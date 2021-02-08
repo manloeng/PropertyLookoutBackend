@@ -18,7 +18,7 @@ function getTestData(req, res) {
       }),
       purchasePrice,
       deposit,
-      purchaseDate: new Date(faker.date.between("2018-01-01", "2020-01-05")),
+      purchaseDate: new Date(faker.date.between("2018-01-01", "2019-01-05")),
       propertyTenure: {
         tenure: "freehold",
       },
@@ -39,15 +39,15 @@ function getTestData(req, res) {
         },
         EPC: {
           rating: faker.random.arrayElement(["A", "B", "C", "D", "E"]),
-          startDate: new Date(faker.date.between("2019-01-01", "2020-01-05")),
-          endDate: new Date(faker.date.between("2020-01-05", "2022-11-05")),
+          startDate: new Date(faker.date.between("2021-01-01", "2021-02-05")),
+          endDate: new Date(faker.date.between("2022-01-05", "2023-11-05")),
         },
         gasCertificate: {
           isRequired: false,
         },
         electricCertificate: {
-          startDate: new Date(faker.date.between("2018-01-01", "2020-01-05")),
-          endDate: new Date(faker.date.between("2020-01-05", "2025-11-05")),
+          startDate: new Date(faker.date.between("2021-01-01", "2021-01-05")),
+          endDate: new Date(faker.date.between("2022-01-05", "2025-11-05")),
         },
       },
     };
