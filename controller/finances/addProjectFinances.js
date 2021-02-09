@@ -9,25 +9,23 @@ async function addProjectFinances(req, res) {
 
     let propertyFinance = await Finance.findOne({ property: propertyId }).exec();
 
+    // !propertyFinance throw not found err
+
     newPayloads.forEach(async (payload, index) => {
       const { key, value } = payload;
       const splitKey = key.split(".");
 
-      if (propertyFinance) {
-        let finalItemArray = propertyFinance[splitKey[0]][splitKey[1]][splitKey[2]];
-        if (finalItemArray) {
-          await Finance.findOneAndUpdate(
-            { property: propertyId },
-            { $push: { [key]: value } },
-            { upsert: true }
-          ).exec();
-        }
+      let finalKeyExist = Object.keys(propertyFinance[splitKey[0]][splitKey[1]]).includes(splitKey[2]);
+      if (finalKeyExist) {
+        await Finance.findOneAndUpdate({ property: propertyId }, { $push: { [key]: value } }, { upsert: true }).exec();
       } else {
         await Finance.findOneAndUpdate({ property: propertyId }, { $set: { [key]: [value] } }, { upsert: true }).exec();
       }
     });
 
-    res.send({ msg: "success" });
+    let newPropertyFinance = await Finance.findOne({ property: propertyId }).exec();
+
+    res.status(200).send({ finance: newPropertyFinance });
   } catch (e) {
     console.log(e);
   }
