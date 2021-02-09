@@ -1,6 +1,16 @@
 const faker = require("faker");
 
 function getTestData(req, res) {
+  const rent = {
+    cost: faker.random.number({
+      min: 400,
+      max: 1200,
+    }),
+    startDate: new Date(faker.date.between("2021-01-01", "2021-03-30")),
+    endDate: new Date(faker.date.between("2022-01-01", "2023-11-05")),
+  };
+  const copyRent = { ...rent };
+
   let dataArr = [];
   for (let id = 1; id <= 10; id++) {
     const purchasePrice = faker.random.number({
