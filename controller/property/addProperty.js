@@ -10,15 +10,14 @@ function addProperty(req, res) {
     // if (uuid.length === 16){}
     var property = new Property({
       landlord: uuid,
-      restOfData,
+      ...restOfData,
     });
 
     property.save(function (err) {
       if (err) console.log(err);
-
-      console.log("property successfully saved.");
-      res.send({ msg: "success" });
     });
+
+    res.status(201).send({ property });
   } catch (e) {
     res.send("error...");
   }
