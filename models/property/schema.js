@@ -8,14 +8,7 @@ let PropertiesSchema = new Schema({
   propertyName: {
     type: String,
   },
-  propertyNumber: {
-    type: Number,
-    required: true,
-  },
-  streetName: {
-    type: String,
-  },
-  area: {
+  address: {
     type: String,
   },
   city: {
