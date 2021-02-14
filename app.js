@@ -29,6 +29,10 @@ app.use(cors());
 app.use(express.static("public"));
 app.use(express.json());
 
+app.get("/", (req, res) => {
+  res.send("Welcome!");
+});
+
 app.use("/api", apiRouter);
 
 app.get("/test", getTestData);
