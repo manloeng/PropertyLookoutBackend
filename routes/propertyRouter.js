@@ -3,6 +3,7 @@ const addProperty = require("../controller/property/addProperty");
 const getAllPropertiesByUserId = require("../controller/property/getAllPropertiesByUserId");
 const getPropertyByPropertyId = require("../controller/property/getPropertyByPropertyId");
 const updatePropertyByPropertyId = require("../controller/property/updatePropertyByPropertyId");
+const deletePropertyByPropertyId = require("../controller/property/deletePropertyByPropertyId");
 const addProjectFinances = require("../controller/finances/addProjectFinances");
 const deleteProjectFinances = require("../controller/finances/deleteProjectFinances");
 const getProjectFinanceByPropertyId = require("../controller/finances/getProjectFinanceByPropertyId");
@@ -16,6 +17,7 @@ propertyRouter
   .route("/:propertyId")
   .get(getPropertyByPropertyId)
   .patch(updatePropertyByPropertyId)
+  .delete(deletePropertyByPropertyId)
   .all(methodNotAllowed);
 
 propertyRouter
