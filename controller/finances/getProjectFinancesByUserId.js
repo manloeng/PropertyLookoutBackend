@@ -7,14 +7,55 @@ const oneOffRevenueExpense = require("../../models/oneOffRevenueExpense/model.js
 
 async function getProjectFinanceByUserId(req, res) {
   try {
-    const { userId } = req.query;
+    const { userId, startDate = new Date() } = req.query;
 
-    const monthlyCapitalExpenseResponse = await monthlyCapitalExpense.find({ account: userId }).lean().exec();
-    const monthlyIncomeResponse = await monthlyIncome.find({ account: userId }).lean().exec();
-    const monthlyRevenueExpenseResponse = await monthlyRevenueExpense.find({ account: userId }).lean().exec();
-    const oneOffCapitalExpenseResponse = await oneOffCapitalExpense.find({ account: userId }).lean().exec();
-    const oneOffIncomeResponse = await oneOffIncome.find({ account: userId }).lean().exec();
-    const oneOffRevenueExpenseResponse = await oneOffRevenueExpense.find({ account: userId }).lean().exec();
+    let monthlyCapitalExpenseResponse;
+    let monthlyIncomeResponse;
+    let monthlyRevenueExpenseResponse;
+    let oneOffCapitalExpenseResponse;
+    let oneOffIncomeResponse;
+    let oneOffRevenueExpenseResponse;
+
+    if (startDate) {
+      const currentYear = startDate.getFullYear();
+      monthlyCapitalExpenseResponse = await monthlyCapitalExpense
+        .find({ account: userId, startDate: { $gte: `${currentYear}-01-01` } })
+        .sort({ startDate: 1 })
+        .lean()
+        .exec();
+      monthlyIncomeResponse = await monthlyIncome
+        .find({ account: userId, startDate: { $gte: `${currentYear}-01-01` } })
+        .sort({ startDate: 1 })
+        .lean()
+        .exec();
+      monthlyRevenueExpenseResponse = await monthlyRevenueExpense
+        .find({ account: userId, startDate: { $gte: `${currentYear}-01-01` } })
+        .sort({ startDate: 1 })
+        .lean()
+        .exec();
+      oneOffCapitalExpenseResponse = await oneOffCapitalExpense
+        .find({ account: userId, startDate: { $gte: `${currentYear}-01-01` } })
+        .sort({ startDate: 1 })
+        .lean()
+        .exec();
+      oneOffIncomeResponse = await oneOffIncome
+        .find({ account: userId, startDate: { $gte: `${currentYear}-01-01` } })
+        .sort({ startDate: 1 })
+        .lean()
+        .exec();
+      oneOffRevenueExpenseResponse = await oneOffRevenueExpense
+        .find({ account: userId, startDate: { $gte: `${currentYear}-01-01` } })
+        .sort({ startDate: 1 })
+        .lean()
+        .exec();
+    } else {
+      monthlyCapitalExpenseResponse = await monthlyCapitalExpense.find({ account: userId }).lean().exec();
+      monthlyIncomeResponse = await monthlyIncome.find({ account: userId }).lean().exec();
+      monthlyRevenueExpenseResponse = await monthlyRevenueExpense.find({ account: userId }).lean().exec();
+      oneOffCapitalExpenseResponse = await oneOffCapitalExpense.find({ account: userId }).lean().exec();
+      oneOffIncomeResponse = await oneOffIncome.find({ account: userId }).lean().exec();
+      oneOffRevenueExpenseResponse = await oneOffRevenueExpense.find({ account: userId }).lean().exec();
+    }
 
     let finances = {
       monthlyCapitalExpense: monthlyCapitalExpenseResponse,
