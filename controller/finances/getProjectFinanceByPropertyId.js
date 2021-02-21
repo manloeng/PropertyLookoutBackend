@@ -1,15 +1,34 @@
-const Finances = require("../../models/finances/model.js");
+const monthlyCapitalExpense = require("../../models/monthlyCapitalExpense/model.js");
+const monthlyIncome = require("../../models/monthlyIncome/model.js");
+const monthlyRevenueExpense = require("../../models/monthlyRevenueExpense/model.js");
+const oneOffCapitalExpense = require("../../models/oneOffCapitalExpense/model.js");
+const oneOffIncome = require("../../models/oneOffIncome/model.js");
+const oneOffRevenueExpense = require("../../models/oneOffRevenueExpense/model.js");
 
-async function getProjectFinancesByUserId(req, res) {
+async function getProjectFinanceByPropertyId(req, res) {
   try {
     const { propertyId } = req.params;
 
-    const response = await Finances.find({ property: propertyId }).exec();
+    const monthlyCapitalExpenseResponse = await monthlyCapitalExpense.find({ property: propertyId }).lean().exec();
+    const monthlyIncomeResponse = await monthlyIncome.find({ property: propertyId }).lean().exec();
+    const monthlyRevenueExpenseResponse = await monthlyRevenueExpense.find({ property: propertyId }).lean().exec();
+    const oneOffCapitalExpenseResponse = await oneOffCapitalExpense.find({ property: propertyId }).lean().exec();
+    const oneOffIncomeResponse = await oneOffIncome.find({ property: propertyId }).lean().exec();
+    const oneOffRevenueExpenseResponse = await oneOffRevenueExpense.find({ property: propertyId }).lean().exec();
 
-    return res.status(200).json(response);
+    let finances = {
+      monthlyCapitalExpense: monthlyCapitalExpenseResponse,
+      monthlyIncome: monthlyIncomeResponse,
+      monthlyRevenueExpense: monthlyRevenueExpenseResponse,
+      oneOffCapitalExpense: oneOffCapitalExpenseResponse,
+      oneOffIncomeResponse: oneOffIncomeResponse,
+      oneOffRevenueExpenseResponse: oneOffRevenueExpenseResponse,
+    };
+
+    return res.status(200).json(finances);
   } catch (err) {
     console.log(err);
   }
 }
 
-module.exports = getProjectFinancesByUserId;
+module.exports = getProjectFinanceByPropertyId;
