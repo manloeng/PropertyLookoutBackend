@@ -1,20 +1,14 @@
+const getModel = require("./utils/getModel");
+
 async function getFinance(req, res) {
-  let Model;
-
-  if (req.route.path) {
-    const { path } = req.route;
-    const modelLocation = path.split("/")[1];
-    Model = require(`../../models/${modelLocation}/model`);
-  }
-
-  if (!Model) console.log("Something Went Wrong");
+  const Model = getModel(req.route.path);
 
   try {
     const { propertyId } = req.query;
 
-    const monthlyIncome = await Model.find({ property: propertyId }).exec();
+    const finance = await Model.find({ property: propertyId }).exec();
 
-    res.status(200).send({ monthlyIncome });
+    res.status(200).send({ finance });
   } catch (e) {
     console.log(e);
   }
