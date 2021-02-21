@@ -17,34 +17,35 @@ async function getProjectFinanceByUserId(req, res) {
     let oneOffRevenueExpenseResponse;
 
     if (startDate) {
-      const currentYear = startDate.getFullYear();
+      const newStartDate = new Date(startDate);
+      const currentYear = newStartDate.getFullYear();
       monthlyCapitalExpenseResponse = await monthlyCapitalExpense
-        .find({ $and: [{ property: propertyId }, { startDate: { $gte: `${currentYear}-01-01` } }] })
+        .find({ $and: [{ account: userId }, { startDate: { $gte: `${currentYear}-01-01` } }] })
         .sort({ startDate: 1 })
         .lean()
         .exec();
       monthlyIncomeResponse = await monthlyIncome
-        .find({ $and: [{ property: propertyId }, { startDate: { $gte: `${currentYear}-01-01` } }] })
+        .find({ $and: [{ account: userId }, { startDate: { $gte: `${currentYear}-01-01` } }] })
         .sort({ startDate: 1 })
         .lean()
         .exec();
       monthlyRevenueExpenseResponse = await monthlyRevenueExpense
-        .find({ $and: [{ property: propertyId }, { startDate: { $gte: `${currentYear}-01-01` } }] })
+        .find({ $and: [{ account: userId }, { startDate: { $gte: `${currentYear}-01-01` } }] })
         .sort({ startDate: 1 })
         .lean()
         .exec();
       oneOffCapitalExpenseResponse = await oneOffCapitalExpense
-        .find({ $and: [{ property: propertyId }, { startDate: { $gte: `${currentYear}-01-01` } }] })
+        .find({ $and: [{ account: userId }, { startDate: { $gte: `${currentYear}-01-01` } }] })
         .sort({ startDate: 1 })
         .lean()
         .exec();
       oneOffIncomeResponse = await oneOffIncome
-        .find({ $and: [{ property: propertyId }, { startDate: { $gte: `${currentYear}-01-01` } }] })
+        .find({ $and: [{ account: userId }, { startDate: { $gte: `${currentYear}-01-01` } }] })
         .sort({ startDate: 1 })
         .lean()
         .exec();
       oneOffRevenueExpenseResponse = await oneOffRevenueExpense
-        .find({ $and: [{ property: propertyId }, { startDate: { $gte: `${currentYear}-01-01` } }] })
+        .find({ $and: [{ account: userId }, { startDate: { $gte: `${currentYear}-01-01` } }] })
         .sort({ startDate: 1 })
         .lean()
         .exec();
