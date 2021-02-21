@@ -72,50 +72,8 @@ let PropertiesSchema = new Schema({
   description: {
     type: String,
   },
-  rental: {
-    currentRent: {
-      rent: {
-        type: Number,
-      },
-      units: {
-        type: String,
-      },
-    },
-    sinkingFunds: {
-      amount: {
-        type: Number,
-      },
-      units: {
-        type: String,
-      },
-    },
-    EPC: {
-      rating: {
-        type: String,
-      },
-      startDate: {
-        type: Date,
-      },
-    },
-    gasCertificate: {
-      isRequired: {
-        type: Boolean,
-      },
-      startDate: {
-        type: Date,
-      },
-    },
-    electricCertificate: {
-      startDate: {
-        type: Date,
-      },
-    },
-  },
   propertySaleHistory: {
     type: Number,
-  },
-  finances: {
-    type: Object,
   },
 });
 
