@@ -21,8 +21,8 @@ async function getProjectFinanceByPropertyId(req, res) {
       monthlyIncome: monthlyIncomeResponse,
       monthlyRevenueExpense: monthlyRevenueExpenseResponse,
       oneOffCapitalExpense: oneOffCapitalExpenseResponse,
-      oneOffIncomeResponse: oneOffIncomeResponse,
-      oneOffRevenueExpenseResponse: oneOffRevenueExpenseResponse,
+      oneOffIncome: oneOffIncomeResponse,
+      oneOffRevenueExpense: oneOffRevenueExpenseResponse,
     };
 
     return res.status(200).json(finances);
