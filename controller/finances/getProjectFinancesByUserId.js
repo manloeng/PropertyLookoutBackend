@@ -19,32 +19,32 @@ async function getProjectFinanceByUserId(req, res) {
     if (startDate) {
       const currentYear = startDate.getFullYear();
       monthlyCapitalExpenseResponse = await monthlyCapitalExpense
-        .find({ account: userId, startDate: { $gte: `${currentYear}-01-01` } })
+        .find({ $and: [{ property: propertyId }, { startDate: { $gte: `${currentYear}-01-01` } }] })
         .sort({ startDate: 1 })
         .lean()
         .exec();
       monthlyIncomeResponse = await monthlyIncome
-        .find({ account: userId, startDate: { $gte: `${currentYear}-01-01` } })
+        .find({ $and: [{ property: propertyId }, { startDate: { $gte: `${currentYear}-01-01` } }] })
         .sort({ startDate: 1 })
         .lean()
         .exec();
       monthlyRevenueExpenseResponse = await monthlyRevenueExpense
-        .find({ account: userId, startDate: { $gte: `${currentYear}-01-01` } })
+        .find({ $and: [{ property: propertyId }, { startDate: { $gte: `${currentYear}-01-01` } }] })
         .sort({ startDate: 1 })
         .lean()
         .exec();
       oneOffCapitalExpenseResponse = await oneOffCapitalExpense
-        .find({ account: userId, startDate: { $gte: `${currentYear}-01-01` } })
+        .find({ $and: [{ property: propertyId }, { startDate: { $gte: `${currentYear}-01-01` } }] })
         .sort({ startDate: 1 })
         .lean()
         .exec();
       oneOffIncomeResponse = await oneOffIncome
-        .find({ account: userId, startDate: { $gte: `${currentYear}-01-01` } })
+        .find({ $and: [{ property: propertyId }, { startDate: { $gte: `${currentYear}-01-01` } }] })
         .sort({ startDate: 1 })
         .lean()
         .exec();
       oneOffRevenueExpenseResponse = await oneOffRevenueExpense
-        .find({ account: userId, startDate: { $gte: `${currentYear}-01-01` } })
+        .find({ $and: [{ property: propertyId }, { startDate: { $gte: `${currentYear}-01-01` } }] })
         .sort({ startDate: 1 })
         .lean()
         .exec();

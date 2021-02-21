@@ -20,32 +20,32 @@ async function getProjectFinanceByPropertyId(req, res) {
     if (startDate) {
       const currentYear = startDate.getFullYear();
       monthlyCapitalExpenseResponse = await monthlyCapitalExpense
-        .find({ property: propertyId, startDate: { $gte: `${currentYear}-01-01` } })
-        .sort({ startDate: 1 })
+        .find({ $and: [{ property: propertyId }, { startDate: { $gte: `${currentYear}-01-01` } }] })
+        // .sort({ startDate: 1 })
         .lean()
         .exec();
       monthlyIncomeResponse = await monthlyIncome
-        .find({ property: propertyId, startDate: { $gte: `${currentYear}-01-01` } })
+        .find({ $and: [{ property: propertyId }, { startDate: { $gte: `${currentYear}-01-01` } }] })
         .sort({ startDate: 1 })
         .lean()
         .exec();
       monthlyRevenueExpenseResponse = await monthlyRevenueExpense
-        .find({ property: propertyId, startDate: { $gte: `${currentYear}-01-01` } })
+        .find({ $and: [{ property: propertyId }, { startDate: { $gte: `${currentYear}-01-01` } }] })
         .sort({ startDate: 1 })
         .lean()
         .exec();
       oneOffCapitalExpenseResponse = await oneOffCapitalExpense
-        .find({ property: propertyId, startDate: { $gte: `${currentYear}-01-01` } })
+        .find({ $and: [{ property: propertyId }, { startDate: { $gte: `${currentYear}-01-01` } }] })
         .sort({ startDate: 1 })
         .lean()
         .exec();
       oneOffIncomeResponse = await oneOffIncome
-        .find({ property: propertyId, startDate: { $gte: `${currentYear}-01-01` } })
+        .find({ $and: [{ property: propertyId }, { startDate: { $gte: `${currentYear}-01-01` } }] })
         .sort({ startDate: 1 })
         .lean()
         .exec();
       oneOffRevenueExpenseResponse = await oneOffRevenueExpense
-        .find({ property: propertyId, startDate: { $gte: `${currentYear}-01-01` } })
+        .find({ $and: [{ property: propertyId }, { startDate: { $gte: `${currentYear}-01-01` } }] })
         .sort({ startDate: 1 })
         .lean()
         .exec();
@@ -58,6 +58,7 @@ async function getProjectFinanceByPropertyId(req, res) {
       oneOffRevenueExpenseResponse = await oneOffRevenueExpense.find({ property: propertyId }).lean().exec();
     }
 
+    console.log(monthlyCapitalExpenseResponse, "monthlyCapitalExpenseResponse");
     let finances = {
       monthlyCapitalExpense: monthlyCapitalExpenseResponse,
       monthlyIncome: monthlyIncomeResponse,
