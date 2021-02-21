@@ -8,7 +8,7 @@ const oneOffRevenueExpense = require("../../models/oneOffRevenueExpense/model.js
 async function getProjectFinanceByPropertyId(req, res) {
   try {
     const { propertyId } = req.params;
-    const { startDate = new Date() } = req.query;
+    const { startDate } = req.query;
 
     let monthlyCapitalExpenseResponse;
     let monthlyIncomeResponse;

@@ -7,7 +7,7 @@ const oneOffRevenueExpense = require("../../models/oneOffRevenueExpense/model.js
 
 async function getProjectFinanceByUserId(req, res) {
   try {
-    const { userId, startDate = new Date() } = req.query;
+    const { userId, startDate } = req.query;
 
     let monthlyCapitalExpenseResponse;
     let monthlyIncomeResponse;
