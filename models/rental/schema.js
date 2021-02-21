@@ -2,8 +2,8 @@ const mongoose = require("mongoose");
 
 const Schema = mongoose.Schema;
 let Rental = new Schema({
-  property: mongoose.Types.ObjectId(),
-  account: mongoose.Types.ObjectId(),
+  property: { type: mongoose.Types.ObjectId(), required: true },
+  account: { type: mongoose.Types.ObjectId(), required: true },
   currentRental: {
     rent: {
       type: Number,
