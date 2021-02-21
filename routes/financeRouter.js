@@ -1,50 +1,26 @@
 const financeRouter = require("express").Router();
 const getProjectFinancesByUserId = require("../controller/finances/getProjectFinancesByUserId");
+const getFinance = require("../controller/finances/getFinance");
+const addFinance = require("../controller/finances/addFinance");
+const updateFinance = require("../controller/finances/updateFinance");
+const deleteFinance = require("../controller/finances/deleteFinance");
 const { methodNotAllowed } = require("../errors");
 
 financeRouter.route("/").get(getProjectFinancesByUserId).all(methodNotAllowed);
-financeRouter.route("/:propertyId").get(getProjectFinancesByPropertyId).all(methodNotAllowed);
 
-financeRouter
-  .route("/monthlyInc")
-  .get(getMonthlyIncome)
-  .patch(updateMonthlyIncome)
-  .delete(deleteMonthlyIncome)
-  .all(methodNotAllowed);
+financeRouter.route("/monthlyIncome").get(getFinance).post(addFinance).all(methodNotAllowed);
+financeRouter.route("/monthlyIncome/:id").patch(updateFinance).delete(deleteFinance).all(methodNotAllowed);
+financeRouter.route("/oneOffIncome").get(getFinance).post(addFinance).all(methodNotAllowed);
+financeRouter.route("/oneOffIncome/:id").patch(updateFinance).delete(deleteFinance).all(methodNotAllowed);
 
-financeRouter
-  .route("/oneOffInc")
-  .get(getOneOffIncome)
-  .patch(updateOneOffIncome)
-  .delete(deleteOneOffIncome)
-  .all(methodNotAllowed);
+financeRouter.route("/monthlyCapitalExpense").get(getFinance).post(addFinance).all(methodNotAllowed);
+financeRouter.route("/monthlyCapitalExpense/:id").patch(updateFinance).delete(deleteFinance).all(methodNotAllowed);
+financeRouter.route("/OneOffCapitalExpense").get(getFinance).post(addFinance).all(methodNotAllowed);
+financeRouter.route("/oneOffCapitalExpense/:id").patch(updateFinance).delete(deleteFinance).all(methodNotAllowed);
 
-financeRouter
-  .route("/monthlyCapitalExp")
-  .get(getMonthlyCapitalExpense)
-  .patch(updateMonthlyCapitalExpense)
-  .delete(deleteMonthlyCapitalExpense)
-  .all(methodNotAllowed);
-
-financeRouter
-  .route("/OneOffCapitalExp")
-  .get(getOneOffCapitalExpense)
-  .patch(updateOneOffCapitalExpense)
-  .delete(deleteOneOffCapitalExpense)
-  .all(methodNotAllowed);
-
-financeRouter
-  .route("/monthlyRevenueExp")
-  .get(getMonthlyRevenueExpense)
-  .patch(updateMonthlyRevenueExpense)
-  .delete(deleteMonthlyRevenueExpense)
-  .all(methodNotAllowed);
-
-financeRouter
-  .route("/OneOffRevenueExp")
-  .get(getOneOffRevenueExpense)
-  .patch(updateOneOffRevenueExpense)
-  .delete(deleteOneOffRevenueExpense)
-  .all(methodNotAllowed);
+financeRouter.route("/monthlyRevenueExp").get(getFinance).post(addFinance).all(methodNotAllowed);
+financeRouter.route("/monthlyRevenueExpense/:id").patch(updateFinance).delete(deleteFinance).all(methodNotAllowed);
+financeRouter.route("/OneOffRevenueExp").get(getFinance).post(addFinance).all(methodNotAllowed);
+financeRouter.route("/oneOffRevenueExpense/:id").patch(updateFinance).delete(deleteFinance).all(methodNotAllowed);
 
 module.exports = financeRouter;
