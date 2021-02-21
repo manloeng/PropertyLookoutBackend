@@ -1,30 +1,34 @@
-const Properties = require("../../models/property/model.js");
-const Finances = require("../../models/finances/model.js");
+const monthlyCapitalExpense = require("../../models/monthlyCapitalExpense/model.js");
+const monthlyIncome = require("../../models/monthlyIncome/model.js");
+const monthlyRevenueExpense = require("../../models/monthlyRevenueExpense/model.js");
+const oneOffCapitalExpense = require("../../models/oneOffCapitalExpense/model.js");
+const oneOffIncome = require("../../models/oneOffIncome/model.js");
+const oneOffRevenueExpense = require("../../models/oneOffRevenueExpense/model.js");
 
-async function getProjectFinancesByUserId(req, res) {
+async function getProjectFinanceByUserId(req, res) {
   try {
     const { userId } = req.query;
 
-    const properties = await Properties.find({ landlord: userId }).exec();
-    const propertyIds = properties.map((property) => property._id);
+    const monthlyCapitalExpenseResponse = await monthlyCapitalExpense.find({ account: userId }).lean().exec();
+    const monthlyIncomeResponse = await monthlyIncome.find({ account: userId }).lean().exec();
+    const monthlyRevenueExpenseResponse = await monthlyRevenueExpense.find({ account: userId }).lean().exec();
+    const oneOffCapitalExpenseResponse = await oneOffCapitalExpense.find({ account: userId }).lean().exec();
+    const oneOffIncomeResponse = await oneOffIncome.find({ account: userId }).lean().exec();
+    const oneOffRevenueExpenseResponse = await oneOffRevenueExpense.find({ account: userId }).lean().exec();
 
-    const finances = propertyIds.map(async (propertyId) => {
-      const response = await Finances.findOne({ property: propertyId });
-      if (response) return response;
-      else return {};
-    });
+    let finances = {
+      monthlyCapitalExpense: monthlyCapitalExpenseResponse,
+      monthlyIncome: monthlyIncomeResponse,
+      monthlyRevenueExpense: monthlyRevenueExpenseResponse,
+      oneOffCapitalExpense: oneOffCapitalExpenseResponse,
+      oneOffIncomeResponse: oneOffIncomeResponse,
+      oneOffRevenueExpenseResponse: oneOffRevenueExpenseResponse,
+    };
 
-    Promise.all(finances).then((finances) => {
-      const filteredFiances = finances.filter((finance) => {
-        const keys = Object.keys(finance);
-        if (keys.length) return finance;
-      });
-
-      return res.status(200).json(filteredFiances);
-    });
+    return res.status(200).json(finances);
   } catch (err) {
     console.log(err);
   }
 }
 
-module.exports = getProjectFinancesByUserId;
+module.exports = getProjectFinanceByUserId;
