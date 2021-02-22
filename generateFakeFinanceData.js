@@ -60,7 +60,6 @@ function generateFakeFinanceData(req, res) {
         name: faker.commerce.productName(),
         cost: faker.commerce.price(),
         startDate: new Date(faker.date.between("2020-01-01", "2021-03-30")),
-        endDate: new Date(faker.date.between("2022-01-01", "2023-11-05")),
       };
       const oneOffCapitalExpense = new OneOffCapitalExpense({ ...data });
       oneOffCapitalExpense.save(function (err) {
@@ -75,7 +74,6 @@ function generateFakeFinanceData(req, res) {
         name: faker.commerce.productName(),
         cost: faker.commerce.price(),
         startDate: new Date(faker.date.between("2020-01-01", "2021-03-30")),
-        endDate: new Date(faker.date.between("2022-01-01", "2023-11-05")),
       };
       const oneOffIncome = new OneOffIncome({ ...data });
       oneOffIncome.save(function (err) {
@@ -90,7 +88,6 @@ function generateFakeFinanceData(req, res) {
         name: faker.commerce.productName(),
         cost: faker.commerce.price(),
         startDate: new Date(faker.date.between("2020-01-01", "2021-03-30")),
-        endDate: new Date(faker.date.between("2022-01-01", "2023-11-05")),
       };
       const oneOffRevenueExpense = new OneOffRevenueExpense({ ...data });
       oneOffRevenueExpense.save(function (err) {
