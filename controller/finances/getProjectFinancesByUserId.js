@@ -50,12 +50,28 @@ async function getProjectFinanceByUserId(req, res) {
         .lean()
         .exec();
     } else {
-      monthlyCapitalExpenseResponse = await monthlyCapitalExpense.find({ account: userId }).lean().exec();
-      monthlyIncomeResponse = await monthlyIncome.find({ account: userId }).lean().exec();
-      monthlyRevenueExpenseResponse = await monthlyRevenueExpense.find({ account: userId }).lean().exec();
-      oneOffCapitalExpenseResponse = await oneOffCapitalExpense.find({ account: userId }).lean().exec();
-      oneOffIncomeResponse = await oneOffIncome.find({ account: userId }).lean().exec();
-      oneOffRevenueExpenseResponse = await oneOffRevenueExpense.find({ account: userId }).lean().exec();
+      monthlyCapitalExpenseResponse = await monthlyCapitalExpense
+        .find({ account: userId })
+        .sort({ startDate: 1 })
+        .lean()
+        .exec();
+      monthlyIncomeResponse = await monthlyIncome.find({ account: userId }).sort({ startDate: 1 }).lean().exec();
+      monthlyRevenueExpenseResponse = await monthlyRevenueExpense
+        .find({ account: userId })
+        .sort({ startDate: 1 })
+        .lean()
+        .exec();
+      oneOffCapitalExpenseResponse = await oneOffCapitalExpense
+        .find({ account: userId })
+        .sort({ startDate: 1 })
+        .lean()
+        .exec();
+      oneOffIncomeResponse = await oneOffIncome.find({ account: userId }).sort({ startDate: 1 }).lean().exec();
+      oneOffRevenueExpenseResponse = await oneOffRevenueExpense
+        .find({ account: userId })
+        .sort({ startDate: 1 })
+        .lean()
+        .exec();
     }
 
     let finances = {
