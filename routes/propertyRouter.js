@@ -7,7 +7,7 @@ const deletePropertyByPropertyId = require("../controller/property/deletePropert
 const addProjectFinances = require("../controller/finances/addProjectFinances");
 const deleteProjectFinances = require("../controller/finances/deleteProjectFinances");
 const getProjectFinanceByPropertyId = require("../controller/finances/getProjectFinanceByPropertyId");
-// const getPropertyFinanceByPropertyId = require("../controller/property&finances/getPropertyFinanceByPropertyId");
+const getRentalDataByPropertyId = require("../controller/property/getRentalDataByPropertyId");
 const { methodNotAllowed } = require("../errors");
 
 // should get all properties without showing users id
@@ -26,5 +26,8 @@ propertyRouter
   .post(addProjectFinances)
   .patch(deleteProjectFinances)
   .all(methodNotAllowed);
+
+// could do queries instead?
+propertyRouter.route("/:propertyId/rental").get(getRentalDataByPropertyId).all(methodNotAllowed);
 
 module.exports = propertyRouter;
