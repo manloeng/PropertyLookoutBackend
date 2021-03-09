@@ -1,4 +1,5 @@
 const Property = require("../../models/property/model.js");
+const Rental = require("../../models/rental/model.js");
 
 function addProperty(req, res) {
   try {
@@ -12,8 +13,12 @@ function addProperty(req, res) {
       landlord: uuid,
       ...restOfData,
     });
-
     property.save(function (err) {
+      if (err) console.log(err);
+    });
+
+    const rental = new Rental({ property: property._id, landlord: uuid });
+    rental.save(function (err) {
       if (err) console.log(err);
     });
 
