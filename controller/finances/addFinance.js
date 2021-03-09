@@ -1,4 +1,4 @@
-const getModel = require("./utils/getModel");
+const getModel = require("../utils/getModel");
 const mongoose = require("mongoose");
 
 async function addFinance(req, res) {

@@ -1,4 +1,4 @@
-const getModel = require("./utils/getModel");
+const getModel = require("../utils/getModel");
 
 async function deleteFinance(req, res) {
   const Model = getModel(req.route.path);
