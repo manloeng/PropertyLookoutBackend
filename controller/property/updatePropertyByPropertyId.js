@@ -5,15 +5,19 @@ async function updatePropertyByPropertyId(req, res) {
     const { propertyId } = req.params;
     const data = req.body;
 
-    const property = await Property.findByIdAndUpdate(
-      { _id: propertyId },
-      { $set: data },
-      { strict: false, upsert: true, multi: true, new: true }
-    ).exec();
+    const documentExist = await Property.exists({ _id: propertyId });
 
-    if (property) {
-      return res.status(200).json(property);
-    } else return res.send({ msg: "Something Gone Wrong" });
+    if (documentExist) {
+      const property = await Property.findByIdAndUpdate(
+        { _id: propertyId },
+        { $set: data },
+        { strict: false, upsert: true, multi: true, new: true }
+      ).exec();
+
+      if (property) {
+        return res.status(200).json(property);
+      }
+    }
   } catch (e) {
     console.log(e);
   }
