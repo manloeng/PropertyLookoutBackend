@@ -18,9 +18,9 @@ financeRouter.route("/monthlyCapitalExpense/:id").patch(updateFinance).delete(de
 financeRouter.route("/OneOffCapitalExpense").get(getFinance).post(addFinance).all(methodNotAllowed);
 financeRouter.route("/oneOffCapitalExpense/:id").patch(updateFinance).delete(deleteFinance).all(methodNotAllowed);
 
-financeRouter.route("/monthlyRevenueExp").get(getFinance).post(addFinance).all(methodNotAllowed);
+financeRouter.route("/monthlyRevenueExpense").get(getFinance).post(addFinance).all(methodNotAllowed);
 financeRouter.route("/monthlyRevenueExpense/:id").patch(updateFinance).delete(deleteFinance).all(methodNotAllowed);
-financeRouter.route("/OneOffRevenueExp").get(getFinance).post(addFinance).all(methodNotAllowed);
+financeRouter.route("/OneOffRevenueExpense").get(getFinance).post(addFinance).all(methodNotAllowed);
 financeRouter.route("/oneOffRevenueExpense/:id").patch(updateFinance).delete(deleteFinance).all(methodNotAllowed);
 
 module.exports = financeRouter;

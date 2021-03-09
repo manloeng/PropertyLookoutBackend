@@ -1,5 +1,4 @@
-const { connection } = require("mongoose");
+const mongoose = require("mongoose");
 const FinancesSchema = require("./schema");
-const db = connection.useDb(process.env.DB);
 
-module.exports = db.model("Finances", FinancesSchema, "finances");
+module.exports = mongoose.model("Finances", FinancesSchema, "finances");
