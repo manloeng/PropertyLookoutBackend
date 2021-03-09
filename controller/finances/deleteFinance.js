@@ -6,7 +6,7 @@ async function deleteFinance(req, res) {
   try {
     const { id } = req.params;
 
-    await Model.findOneAndDelete({ id }).exec();
+    await Model.findByIdAndDelete({ _id: id }).exec();
 
     res.status(200).send({ msg: "Sucessfully deleted" });
   } catch (e) {
