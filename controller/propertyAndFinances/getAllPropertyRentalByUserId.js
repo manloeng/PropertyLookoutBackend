@@ -6,15 +6,16 @@ async function getAllPropertyRentalByUserId(req, res) {
     const { userId } = req.query;
     const properties = await Properties.find({ landlord: userId });
 
-    const promises = properties.map(async (property) => {
-      const rentals = await Rental.findOne({ property: property._id });
+    const promises = properties.map(async (propertyData) => {
+      const rentals = await Rental.findOne({ property: propertyData._id });
 
       let newProperty = {};
 
       if (rentals) {
-        newProperty = { ...property.toObject(), ...rentals.toObject() };
+        const { _id, landlord, property, ...data } = rentals.toObject();
+        newProperty = { ...propertyData.toObject(), ...data };
       } else {
-        newProperty = { ...property.toObject() };
+        newProperty = { ...propertyData.toObject() };
       }
 
       return newProperty;
