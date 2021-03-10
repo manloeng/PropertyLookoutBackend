@@ -25,17 +25,17 @@ function connectToMongoose() {
 mongoose.set("useFindAndModify", false);
 connectToMongoose();
 
-var whitelist = ["http://localhost:6010", "https://property-lookout.vercel.app/"];
-const corsOptions = {
-  origin: function (origin, callback) {
-    if (whitelist.indexOf(origin) !== -1) {
-      callback(null, true);
-    } else {
-      callback(new Error("Not allowed by CORS"));
-    }
-  },
-};
-app.options("*", cors(corsOptions));
+// var whitelist = ["http://localhost:6010", "https://property-lookout.vercel.app/"];
+// const corsOptions = {
+//   origin: function (origin, callback) {
+//     if (whitelist.indexOf(origin) !== -1) {
+//       callback(null, true);
+//     } else {
+//       callback(new Error("Not allowed by CORS"));
+//     }
+//   },
+// };
+// app.options("*", cors(corsOptions));
 
 app.use(express.static("public"));
 app.use(express.json());
