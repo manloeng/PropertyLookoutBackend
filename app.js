@@ -26,6 +26,7 @@ mongoose.set("useFindAndModify", false);
 connectToMongoose();
 
 app.use(cors());
+console.log(cors(), "cors enabled");
 // var whitelist = ["http://localhost:6010", "https://property-lookout.vercel.app/"];
 // const corsOptions = {
 //   origin: function (origin, callback) {
