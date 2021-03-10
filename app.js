@@ -26,7 +26,7 @@ mongoose.set("useFindAndModify", false);
 connectToMongoose();
 
 app.use(cors());
-console.log(cors(), "cors enabled");
+console.log("cors enabled");
 // var whitelist = ["http://localhost:6010", "https://property-lookout.vercel.app/"];
 // const corsOptions = {
 //   origin: function (origin, callback) {
@@ -51,28 +51,28 @@ app.use("/api", apiRouter);
 app.get("/test", getTestData);
 app.get("/test2", getTestFinanceData);
 
-app.post("/drop-all", async (req, res) => {
-  const collections = [
-    "properties",
-    "rental",
-    "monthlyIncome",
-    "monthlyCapitalExpense",
-    "monthlyRevenueExpense",
-    "oneOffIncome",
-    "oneOffCapitalExpense",
-    "oneOffRevenueExpense",
-  ];
+// app.post("/drop-all", async (req, res) => {
+//   const collections = [
+//     "properties",
+//     "rental",
+//     "monthlyIncome",
+//     "monthlyCapitalExpense",
+//     "monthlyRevenueExpense",
+//     "oneOffIncome",
+//     "oneOffCapitalExpense",
+//     "oneOffRevenueExpense",
+//   ];
 
-  const currentCollections = await mongoose.connection.db.listCollections().toArray();
+//   const currentCollections = await mongoose.connection.db.listCollections().toArray();
 
-  const collectionNames = currentCollections.map((collection) => collection.name);
+//   const collectionNames = currentCollections.map((collection) => collection.name);
 
-  collections.forEach(async (collection) => {
-    if (collectionNames.includes(collection)) {
-      await mongoose.connection.db.dropCollection(collection);
-    }
-  });
-});
+//   collections.forEach(async (collection) => {
+//     if (collectionNames.includes(collection)) {
+//       await mongoose.connection.db.dropCollection(collection);
+//     }
+//   });
+// });
 
 app.all("/*", routeNotFound);
 
