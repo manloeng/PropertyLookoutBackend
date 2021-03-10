@@ -1,6 +1,6 @@
 const propertyRouter = require("express").Router();
 const addProperty = require("../controller/property/addProperty");
-const getAllPropertiesByUserId = require("../controller/property/getAllPropertiesByUserId");
+const getAllPropertyRentalByUserId = require("../controller/propertyAndFinances/getAllPropertyRentalByUserId");
 const getPropertyByPropertyId = require("../controller/property/getPropertyByPropertyId");
 const updatePropertyByPropertyId = require("../controller/property/updatePropertyByPropertyId");
 const deletePropertyByPropertyId = require("../controller/property/deletePropertyByPropertyId");
@@ -12,7 +12,7 @@ const updateRentalDataByPropertyId = require("../controller/property/updateRenta
 const { methodNotAllowed } = require("../errors");
 
 // should get all properties without showing users id
-propertyRouter.route("/").get(getAllPropertiesByUserId).post(addProperty).all(methodNotAllowed);
+propertyRouter.route("/").get(getAllPropertyRentalByUserId).post(addProperty).all(methodNotAllowed);
 
 propertyRouter
   .route("/:propertyId")
