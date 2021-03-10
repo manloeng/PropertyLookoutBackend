@@ -8,8 +8,7 @@ async function getAllPropertyRentalByUserId(req, res) {
 
     const promises = properties.map(async (property) => {
       const rentals = await Rental.findOne({ property: property._id });
-      console.log(property, "prop");
-      console.log(rentals, "rentals");
+
       let newProperty = {};
 
       if (rentals) {
