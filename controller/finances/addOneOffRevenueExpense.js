@@ -1,15 +1,13 @@
-const getModel = require("../utils/getModel");
+const OneOffRevenueExpense = require("../../models/oneOffRevenueExpense/model");
 const mongoose = require("mongoose");
 
 async function addOneOffRevenueExpense(req, res) {
-  const Model = getModel(req.route.path);
-
   try {
     const { financeType, expenseType, recurrence, ...data } = req.body;
 
     data.account = mongoose.Types.ObjectId(data.account);
     data.property = mongoose.Types.ObjectId(data.property);
-    const newFinance = new Model(data);
+    const newFinance = new OneOffRevenueExpense(data);
 
     newFinance.save(function (err) {
       if (err) console.log(err);
