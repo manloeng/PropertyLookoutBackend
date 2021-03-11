@@ -1,7 +1,7 @@
 const getModel = require("../utils/getModel");
 const mongoose = require("mongoose");
 
-async function addFinance(req, res) {
+async function addOneOffIncome(req, res) {
   const Model = getModel(req.route.path);
 
   try {
@@ -22,4 +22,4 @@ async function addFinance(req, res) {
   }
 }
 
-module.exports = addFinance;
+module.exports = addOneOffIncome;
