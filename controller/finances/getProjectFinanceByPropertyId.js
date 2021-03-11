@@ -58,7 +58,6 @@ async function getProjectFinanceByPropertyId(req, res) {
       oneOffRevenueExpenseResponse = await oneOffRevenueExpense.find({ property: propertyId }).lean().exec();
     }
 
-    console.log(monthlyCapitalExpenseResponse, "monthlyCapitalExpenseResponse");
     let finances = {
       monthlyCapitalExpense: monthlyCapitalExpenseResponse,
       monthlyIncome: monthlyIncomeResponse,
