@@ -17,7 +17,7 @@ function addProperty(req, res) {
       if (err) console.log(err);
     });
 
-    const rental = new Rental({ property: property._id, landlord: uuid });
+    const rental = new Rental({ property: property._id, account: uuid });
     rental.save(function (err) {
       if (err) console.log(err);
     });
