@@ -10,7 +10,7 @@ function addProperty(req, res) {
 
     // if (uuid.length === 16){}
     var property = new Property({
-      landlord: uuid,
+      account: uuid,
       ...restOfData,
     });
     property.save(function (err) {
