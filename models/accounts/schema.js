@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 const Schema = mongoose.Schema;
-let Landlords = new Schema({
+let Accounts = new Schema({
   name: {
     type: String,
   },
@@ -34,4 +34,4 @@ let Landlords = new Schema({
   },
 });
 
-module.exports = Landlords;
+module.exports = Accounts;

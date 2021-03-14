@@ -4,7 +4,7 @@ async function getAllPropertiesByUserId(req, res) {
   try {
     const { userId } = req.query;
 
-    const properties = await Properties.find({ landlord: userId });
+    const properties = await Properties.find({ account: userId });
 
     return res.status(200).json(properties);
   } catch (err) {

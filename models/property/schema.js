@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 const Schema = mongoose.Schema;
 let PropertiesSchema = new Schema({
-  landlord: {
+  account: {
     type: String,
   },
   propertyName: {

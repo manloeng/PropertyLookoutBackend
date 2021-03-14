@@ -4,7 +4,7 @@ const Rental = require("../../models/rental/model.js");
 async function getAllPropertyRentalByUserId(req, res) {
   try {
     const { userId } = req.query;
-    const properties = await Properties.find({ landlord: userId });
+    const properties = await Properties.find({ account: userId });
 
     const promises = properties.map(async (propertyData) => {
       const rentals = await Rental.findOne({ property: propertyData._id });
@@ -12,7 +12,7 @@ async function getAllPropertyRentalByUserId(req, res) {
       let newProperty = {};
 
       if (rentals) {
-        const { _id, landlord, property, ...data } = rentals.toObject();
+        const { _id, account, property, ...data } = rentals.toObject();
         newProperty = { ...propertyData.toObject(), ...data };
       } else {
         newProperty = { ...propertyData.toObject() };
