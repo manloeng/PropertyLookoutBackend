@@ -8,7 +8,12 @@ async function updateRentalDataByPropertyId(req, res) {
     const documentExist = await Rental.exists({ property: propertyId });
 
     if (documentExist) {
-      const rental = await Rental.findOneAndUpdate({ property: propertyId }, data, { new: true }).exec();
+      const rental = await Rental.findOneAndUpdate(
+        { property: propertyId },
+        { $set: { ...data } },
+        { strict: false, new: true }
+      ).exec();
+
       return res.status(200).json(rental);
     }
   } catch (e) {
