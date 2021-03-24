@@ -19,6 +19,9 @@ let MonthlyCapitalExpense = new Schema({
   endDate: {
     type: Date,
   },
+  description: {
+    type: String,
+  },
 });
 
 module.exports = MonthlyCapitalExpense;
