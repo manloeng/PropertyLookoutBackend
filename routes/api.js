@@ -22,10 +22,10 @@ apiRouter.route("/register").post(register).all(methodNotAllowed);
 apiRouter.use("/property", propertyRouter);
 apiRouter.use("/finance", financeRouter);
 
-app.get("/test", getTestData);
-app.get("/test2", getTestFinanceData);
+apiRouter.route("/test").get(getTestData);
+apiRouter.route("/test2").get(getTestFinanceData);
 
-app.post("/drop-all", async (req, res) => {
+apiRouter.route("/drop-all").post(async (req, res) => {
   const collections = [
     "properties",
     "rental",
