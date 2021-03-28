@@ -3,12 +3,13 @@ const Account = require("../../models/accounts/model");
 const AccessToken = require("../../models/accessTokens/model");
 
 async function register(req, res, next) {
-  const { username, password } = req.body;
+  const { username, password, reconfirmPassword } = req.body;
   const errorMessage = "Username Exists - please try another";
 
   try {
     const userExist = await Account.exists({ username });
-    if (!userExist) res.send({ msg: errorMessage });
+    if (!userExist) next({ status: 400, msg: errorMessage });
+    if (password !== reconfirmPassword) next({ status: 400, msg: "Password Does not match" });
 
     const newPassword = argon2.hash(password);
     const user = new Account({
