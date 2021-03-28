@@ -21,6 +21,7 @@ async function login(req, res, next) {
       if (!accessTokenExist) {
         accessToken = new AccessToken({
           account: user._id,
+          username,
           accessToken: "new Token",
         });
       } else {

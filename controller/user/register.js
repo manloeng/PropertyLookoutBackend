@@ -20,6 +20,7 @@ async function register(req, res, next) {
     if (user) {
       accessToken = new AccessToken({
         account: user._id,
+        username,
         accessToken: "new Token",
       });
     }
