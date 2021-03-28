@@ -5,6 +5,8 @@ const { methodNotAllowed } = require("../errors");
 
 const mongoose = require("mongoose");
 const login = require("../controller/user/login");
+const register = require("../controller/user/register");
+
 const getTestData = require("../generateFakeData");
 const getTestFinanceData = require("../generateFakeFinanceData");
 
@@ -14,7 +16,9 @@ apiRouter
   .all(methodNotAllowed);
 
 apiRouter.route("/login").post(login).all(methodNotAllowed);
+apiRouter.route("/register").post(register).all(methodNotAllowed);
 
+// apiRouter.use(auth);
 apiRouter.use("/property", propertyRouter);
 apiRouter.use("/finance", financeRouter);
 
