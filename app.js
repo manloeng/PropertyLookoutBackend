@@ -2,23 +2,12 @@ const express = require("express");
 const app = express();
 const port = 3030;
 const mongoose = require("mongoose");
+const connectToMongoose = require("./utils/mongo");
 const cors = require("cors");
 const apiRouter = require("./routes/api");
 const { routeNotFound, handleCustomErrors, handle500 } = require("./errors");
 
 require("dotenv").config();
-
-function connectToMongoose() {
-  mongoose
-    .connect(process.env.uri, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    })
-    .then(() => {
-      console.log("MongoDB Connected…");
-    })
-    .catch((err) => console.log(err));
-}
 
 mongoose.set("useFindAndModify", false);
 connectToMongoose();
