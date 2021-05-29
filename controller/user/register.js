@@ -8,8 +8,8 @@ async function register(req, res, next) {
 
   try {
     const userExist = await Account.exists({ username });
-    if (!userExist) next({ status: 400, msg: errorMessage });
-    if (password !== reconfirmPassword) next({ status: 400, msg: "Password Does not match" });
+    if (userExist) throw new Error(next({ status: 400, msg: errorMessage }));
+    if (password !== reconfirmPassword) throw new Error(next({ status: 400, msg: "Password Does not match" }));
 
     const newPassword = argon2.hash(password);
     const user = new Account({
