@@ -22,6 +22,7 @@ apiRouter.route("/register").post(register).all(methodNotAllowed);
 apiRouter.use("/property", propertyRouter);
 apiRouter.use("/finance", financeRouter);
 
+// For Testing Purposes only!!!
 apiRouter.route("/test").get(getTestData);
 apiRouter.route("/test2").get(getTestFinanceData);
 
