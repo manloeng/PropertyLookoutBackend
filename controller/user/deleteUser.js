@@ -1,4 +1,4 @@
-const User = require("../../models/user/model.js");
+const User = require("../../models/users/model.js");
 
 async function deleteUser(req, res) {
   try {

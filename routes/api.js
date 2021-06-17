@@ -1,6 +1,7 @@
 const apiRouter = require("express").Router();
 const propertyRouter = require("./propertyRouter");
 const financeRouter = require("./financeRouter");
+const userRouter = require("./userRouter");
 const { methodNotAllowed } = require("../errors");
 
 const mongoose = require("mongoose");
