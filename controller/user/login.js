@@ -8,7 +8,7 @@ async function login(req, res, next) {
 
   try {
     const userExist = await Account.exists({ username });
-    if (!userExist) res.send({ msg: errorMessage });
+    if (!userExist) res.status(400).send({ msg: errorMessage });
 
     const user = await Account.findOne({ username }).lean();
     const userPasswordHash = user.password;
