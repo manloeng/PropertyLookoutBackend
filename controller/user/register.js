@@ -6,6 +6,7 @@ async function register(req, res, next) {
   const { username, password, reconfirmPassword } = req.body;
   const errorMessage = "Username Exists - please try another";
 
+  console.log(req.body, "req.body");
   try {
     const userExist = await Account.exists({ username });
     if (userExist) throw new Error(next({ status: 400, msg: errorMessage }));
@@ -23,6 +24,14 @@ async function register(req, res, next) {
         account: user._id,
         username,
         accessToken: "new Token",
+      });
+
+      user.save(function (err) {
+        if (err) console.log(err);
+      });
+
+      accessToken.save(function (err) {
+        if (err) console.log(err);
       });
     }
 
