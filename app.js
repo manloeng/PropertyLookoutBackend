@@ -5,6 +5,7 @@ const mongoose = require("mongoose");
 const connectToMongoose = require("./utils/mongo");
 const cors = require("cors");
 const apiRouter = require("./routes/api");
+const auth = require("./lib/auth");
 const { routeNotFound, handleCustomErrors, handle500 } = require("./errors");
 
 require("dotenv").config();
@@ -29,6 +30,8 @@ app.use(
 
 app.use(express.static("public"));
 app.use(express.json());
+
+app.use(auth);
 
 app.get("/", (req, res) => {
   res.send("Welcome!");
