@@ -10,7 +10,7 @@ function generateFakeFinanceData(req, res) {
   if (process.env.NODE_ENV === "development") {
     for (let id = 1; id <= 10; id++) {
       const data = {
-        account: "5fb3effadbe5216f6beee6c5",
+        userId: "5fb3effadbe5216f6beee6c5",
         property: "60310e34694c3400098dc19f",
         name: faker.commerce.productName(),
         cost: faker.commerce.price(),
@@ -25,7 +25,7 @@ function generateFakeFinanceData(req, res) {
 
     for (let id = 1; id <= 10; id++) {
       const data = {
-        account: "5fb3effadbe5216f6beee6c5",
+        userId: "5fb3effadbe5216f6beee6c5",
         property: "60310e34694c3400098dc19f",
         name: faker.commerce.productName(),
         cost: faker.commerce.price(),
@@ -40,7 +40,7 @@ function generateFakeFinanceData(req, res) {
 
     for (let id = 1; id <= 10; id++) {
       const data = {
-        account: "5fb3effadbe5216f6beee6c5",
+        userId: "5fb3effadbe5216f6beee6c5",
         property: "60310e34694c3400098dc19f",
         name: faker.commerce.productName(),
         cost: faker.commerce.price(),
@@ -55,7 +55,7 @@ function generateFakeFinanceData(req, res) {
 
     for (let id = 1; id <= 10; id++) {
       const data = {
-        account: "5fb3effadbe5216f6beee6c5",
+        userId: "5fb3effadbe5216f6beee6c5",
         property: "60310e34694c3400098dc19f",
         name: faker.commerce.productName(),
         cost: faker.commerce.price(),
@@ -69,7 +69,7 @@ function generateFakeFinanceData(req, res) {
 
     for (let id = 1; id <= 10; id++) {
       const data = {
-        account: "5fb3effadbe5216f6beee6c5",
+        userId: "5fb3effadbe5216f6beee6c5",
         property: "60310e34694c3400098dc19f",
         name: faker.commerce.productName(),
         cost: faker.commerce.price(),
@@ -83,7 +83,7 @@ function generateFakeFinanceData(req, res) {
 
     for (let id = 1; id <= 10; id++) {
       const data = {
-        account: "5fb3effadbe5216f6beee6c5",
+        userId: "5fb3effadbe5216f6beee6c5",
         property: "60310e34694c3400098dc19f",
         name: faker.commerce.productName(),
         cost: faker.commerce.price(),
