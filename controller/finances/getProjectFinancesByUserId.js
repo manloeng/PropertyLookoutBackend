@@ -20,20 +20,30 @@ async function getProjectFinanceByUserId(req, res) {
       oneOffRevenueExpense,
     ];
 
+    const financeStringArray = [
+      "monthlyCapitalExpense",
+      "monthlyIncome",
+      "monthlyRevenueExpense",
+      "oneOffCapitalExpense",
+      "oneOffIncome",
+      "oneOffRevenueExpense",
+    ];
+
     if (startDate) {
       const newStartDate = new Date(startDate);
       const currentYear = newStartDate.getFullYear();
       query = { $gte: `${currentYear}-01-01` };
     }
 
-    financeArray.forEach(async (finance) => {
+    for (let i = 0; i < financeArray.length; i++) {
+      const finance = financeArray[i];
       const response = await finance
         .find({ $and: [{ account: userId }, { startDate: query }] })
         .sort({ startDate: 1 })
         .lean();
 
-      finances[finance] = response;
-    });
+      finances[financeStringArray[i]] = response;
+    }
 
     return res.status(200).json(finances);
   } catch (err) {
