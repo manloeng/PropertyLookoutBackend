@@ -7,7 +7,7 @@ async function addFinance(req, res) {
   try {
     const { financeType, expenseType, recurrence, ...data } = req.body;
 
-    data.account = mongoose.Types.ObjectId(data.account);
+    data.userId = mongoose.Types.ObjectId(data.userId);
     data.property = mongoose.Types.ObjectId(data.property);
     const newFinance = new Model(data);
 
