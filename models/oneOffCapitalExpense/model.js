@@ -1,4 +1,4 @@
 const mongoose = require("mongoose");
 const OneOffCapitalExpenseSchema = require("./schema");
 
-module.exports = mongoose.model("OneOffCapitalExpense", OneOffCapitalExpenseSchema, "oneOffCapitalExpense");
+module.exports = mongoose.model("OneOffCapitalExpenseSchema", OneOffCapitalExpenseSchema, "oneOffCapitalExpenseSchema");
