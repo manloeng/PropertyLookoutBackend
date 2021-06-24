@@ -38,7 +38,7 @@ async function getProjectFinanceByUserId(req, res) {
     for (let i = 0; i < financeArray.length; i++) {
       const finance = financeArray[i];
       const response = await finance
-        .find({ $and: [{ account: userId }, { startDate: query }] })
+        .find({ $and: [{ userId }, { startDate: query }] })
         .sort({ startDate: 1 })
         .lean();
 
