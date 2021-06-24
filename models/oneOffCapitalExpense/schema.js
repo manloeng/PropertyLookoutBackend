@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 const Schema = mongoose.Schema;
-let OneOffCapitalExpenseSchema = new Schema({
+let OneOffCapitalExpense = new Schema({
   property: { type: mongoose.Types.ObjectId, required: true },
   userId: { type: mongoose.Types.ObjectId, required: true },
   name: {
@@ -21,4 +21,4 @@ let OneOffCapitalExpenseSchema = new Schema({
   },
 });
 
-module.exports = OneOffCapitalExpenseSchema;
+module.exports = OneOffCapitalExpense;
