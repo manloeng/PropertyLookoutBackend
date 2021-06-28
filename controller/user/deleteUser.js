@@ -1,5 +1,6 @@
 const User = require("../../models/users/model.js");
 
+// should delete account and user
 async function deleteUser(req, res) {
   try {
     const { userId } = req.params;
