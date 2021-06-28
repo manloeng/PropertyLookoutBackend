@@ -36,33 +36,6 @@ app.get("/", (req, res) => {
 });
 
 app.use("/api", apiRouter);
-
-app.get("/test", getTestData);
-app.get("/test2", getTestFinanceData);
-
-// app.post("/drop-all", async (req, res) => {
-//   const collections = [
-//     "properties",
-//     "rental",
-//     "monthlyIncome",
-//     "monthlyCapitalExpense",
-//     "monthlyRevenueExpense",
-//     "oneOffIncome",
-//     "oneOffCapitalExpense",
-//     "oneOffRevenueExpense",
-//   ];
-
-//   const currentCollections = await mongoose.connection.db.listCollections().toArray();
-
-//   const collectionNames = currentCollections.map((collection) => collection.name);
-
-//   collections.forEach(async (collection) => {
-//     if (collectionNames.includes(collection)) {
-//       await mongoose.connection.db.dropCollection(collection);
-//     }
-//   });
-// });
-
 app.all("/*", routeNotFound);
 
 app.use(handleCustomErrors);
