@@ -7,7 +7,7 @@ async function updateFinance(req, res) {
     const { id } = req.params;
     const data = req.body;
 
-    const updatedFinance = await Model.findOneAndUpdate({ id }, data).exec();
+    const updatedFinance = await Model.findOneAndUpdate({ _id: id }, data, { strict: false, new: true }).exec();
 
     res.status(200).send({ updatedFinance });
   } catch (e) {

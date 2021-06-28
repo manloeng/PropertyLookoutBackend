@@ -19,6 +19,9 @@ let MonthlyIncome = new Schema({
   endDate: {
     type: Date,
   },
+  description: {
+    type: String,
+  },
 });
 
 module.exports = MonthlyIncome;

@@ -12,7 +12,6 @@ async function getAllPropertiesByUserId(req, res) {
       const id = property._id;
       const rental = await Rental.findOne({ property: id });
 
-      console.log(rental, "rental");
       rental.currentRental ? (property.currentRental = rental.currentRental) : (property.currentRental = {});
     }
 

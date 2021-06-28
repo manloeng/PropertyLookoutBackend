@@ -19,6 +19,9 @@ let OneOffIncome = new Schema({
   endDate: {
     type: Date,
   },
+  description: {
+    type: String,
+  },
 });
 
 module.exports = OneOffIncome;

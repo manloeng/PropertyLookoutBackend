@@ -1,36 +1,37 @@
 const mongoose = require("mongoose");
 
 const Schema = mongoose.Schema;
-let Accounts = new Schema(
-  {
-    userId: {
-      type: mongoose.Types.ObjectId,
-      required: true,
-    },
-    password: {
-      type: String,
-      required: true,
-    },
-
-    providerType: {
-      type: String,
-    },
-
-    providerId: {
-      type: String,
-    },
-
-    providerAccountId: {
-      type: String,
-    },
-    refreshToken: {
-      type: String,
-    },
-    accessToken: {
-      type: String,
-    },
+let Accounts = new Schema({
+  name: {
+    type: String,
   },
-  { timestamps: true }
-);
+  phoneNumber: {
+    type: Number,
+    required: true,
+  },
+  propertyNumber: {
+    type: Number,
+    required: true,
+  },
+  streetName: {
+    type: String,
+  },
+  area: {
+    type: String,
+  },
+  city: {
+    type: String,
+  },
+  postCode: {
+    type: String,
+    required: true,
+  },
+  propertyList: {
+    type: Array,
+  },
+  propertiesManaged: {
+    type: Array,
+  },
+});
 
 module.exports = Accounts;

@@ -13,20 +13,18 @@ require("dotenv").config();
 mongoose.set("useFindAndModify", false);
 connectToMongoose();
 
-var allowedOrigins = ["http://localhost:6010", "https://property-lookout.vercel.app/"];
-
-app.use(
-  cors({
-    origin: function (origin, callback) {
-      if (!origin) return callback(null, true);
-      if (allowedOrigins.indexOf(origin) === -1) {
-        var msg = "The CORS policy for this site does not " + "allow access from the specified Origin.";
-        return callback(new Error(msg), false);
-      }
-      return callback(null, true);
-    },
-  })
-);
+// app.use(cors());
+var whitelist = ["http://localhost:6010", "https://property-lookout.vercel.app/"];
+const corsOptions = {
+  origin: function (origin, callback) {
+    if (whitelist.indexOf(origin) !== -1) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
+};
+app.options("*", cors(corsOptions));
 
 app.use(express.static("public"));
 app.use(express.json());
@@ -38,6 +36,32 @@ app.get("/", (req, res) => {
 });
 
 app.use("/api", apiRouter);
+
+app.get("/test", getTestData);
+app.get("/test2", getTestFinanceData);
+
+// app.post("/drop-all", async (req, res) => {
+//   const collections = [
+//     "properties",
+//     "rental",
+//     "monthlyIncome",
+//     "monthlyCapitalExpense",
+//     "monthlyRevenueExpense",
+//     "oneOffIncome",
+//     "oneOffCapitalExpense",
+//     "oneOffRevenueExpense",
+//   ];
+
+//   const currentCollections = await mongoose.connection.db.listCollections().toArray();
+
+//   const collectionNames = currentCollections.map((collection) => collection.name);
+
+//   collections.forEach(async (collection) => {
+//     if (collectionNames.includes(collection)) {
+//       await mongoose.connection.db.dropCollection(collection);
+//     }
+//   });
+// });
 
 app.all("/*", routeNotFound);
 

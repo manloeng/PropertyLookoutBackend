@@ -1,0 +1,5 @@
+To deploy find info on: https://vercel.com/guides/deploying-a-mongodb-powered-api-with-node-and-vercel
+
+It was deployed using : `vercel`
+
+Vercel with first build your app before deploying
