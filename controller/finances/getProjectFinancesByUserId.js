@@ -7,7 +7,8 @@ const oneOffRevenueExpense = require("../../models/oneOffRevenueExpense/model.js
 
 async function getProjectFinanceByUserId(req, res) {
   try {
-    const { userId, startDate } = req.query;
+    const { userId } = req;
+    const { startDate } = req.query;
     const finances = {};
     let query = 1;
 
