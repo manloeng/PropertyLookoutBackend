@@ -15,7 +15,6 @@ async function addFinance(req, res) {
       if (err) console.log(err);
     });
 
-    console.log(newFinance, ":fin");
     res.status(200).send({ newFinance });
   } catch (e) {
     console.log(e);
