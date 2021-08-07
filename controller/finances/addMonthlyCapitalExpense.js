@@ -4,9 +4,10 @@ const mongoose = require("mongoose");
 async function addMonthlyCapitalExpense(req, res) {
   const Model = getModel(req.route.path);
   try {
+    const { account } = req;
     const { financeType, expenseType, recurrence, ...data } = req.body;
 
-    data.account = mongoose.Types.ObjectId(data.account);
+    data.account = mongoose.Types.ObjectId(account);
     data.property = mongoose.Types.ObjectId(data.property);
     const newFinance = new Model(data);
 

@@ -3,9 +3,10 @@ const mongoose = require("mongoose");
 
 async function addOneOffRevenueExpense(req, res) {
   try {
+    const { account } = req;
     const { financeType, expenseType, recurrence, ...data } = req.body;
 
-    data.account = mongoose.Types.ObjectId(data.account);
+    data.account = mongoose.Types.ObjectId(account);
     data.property = mongoose.Types.ObjectId(data.property);
     const newFinance = new OneOffRevenueExpense(data);
 
