@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 let MonthlyRevenueExpense = new Schema({
   property: { type: mongoose.Types.ObjectId, required: true },
-  userId: { type: mongoose.Types.ObjectId, required: true },
+  account: { type: mongoose.Types.ObjectId, required: true },
   name: {
     type: String,
     required: true,

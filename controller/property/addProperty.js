@@ -11,7 +11,7 @@ function addProperty(req, res) {
 
     // if (uuid.length === 16){}
     var property = new Property({
-      userId,
+      account: userId,
       ...restOfData,
     });
 
@@ -19,7 +19,7 @@ function addProperty(req, res) {
       if (err) console.log(err);
     });
 
-    const rental = new Rental({ property: property._id, userId });
+    const rental = new Rental({ property: property._id, account:userId });
     rental.save(function (err) {
       if (err) console.log(err);
     });

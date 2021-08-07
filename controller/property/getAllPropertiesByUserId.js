@@ -5,7 +5,7 @@ async function getAllPropertiesByUserId(req, res) {
   try {
     const { userId } = req;
 
-    const properties = await Properties.find({ userId }).lean();
+    const properties = await Properties.find({ account:userId }).lean();
 
     for (let i = 0; i < properties.length; i++) {
       const property = properties[i];
