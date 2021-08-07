@@ -3,7 +3,7 @@ const Rental = require("../../models/rental/model.js");
 
 function addProperty(req, res) {
   try {
-    const { userId } = req;
+    const { account } = req;
     const { ...restOfData } = req.body;
 
     //@todo need to add validation on uuid
@@ -11,7 +11,7 @@ function addProperty(req, res) {
 
     // if (uuid.length === 16){}
     var property = new Property({
-      account: userId,
+      account,
       ...restOfData,
     });
 
@@ -19,7 +19,7 @@ function addProperty(req, res) {
       if (err) console.log(err);
     });
 
-    const rental = new Rental({ property: property._id, account:userId });
+    const rental = new Rental({ property: property._id, account });
     rental.save(function (err) {
       if (err) console.log(err);
     });

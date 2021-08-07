@@ -3,9 +3,9 @@ const Rental = require("../../models/rental/model.js");
 
 async function getAllPropertiesByUserId(req, res) {
   try {
-    const { userId } = req;
+    const { account } = req;
 
-    const properties = await Properties.find({ account:userId }).lean();
+    const properties = await Properties.find({ account }).lean();
 
     for (let i = 0; i < properties.length; i++) {
       const property = properties[i];

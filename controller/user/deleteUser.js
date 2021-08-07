@@ -3,12 +3,12 @@ const User = require("../../models/users/model.js");
 // should delete account and user
 async function deleteUser(req, res) {
   try {
-    const { userId } = req.params;
+    const { account } = req.params;
 
-    const user = await User.find({ _id: userId }).exec();
+    const user = await User.find({ _id: account }).exec();
 
     if (user) {
-      await User.deleteOne({ _id: userId }).exec();
+      await User.deleteOne({ _id: account }).exec();
       res.status(201).send({ msg: "Sucessfully deleted property" });
     }
   } catch (e) {

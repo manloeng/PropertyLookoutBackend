@@ -10,7 +10,7 @@ function getTestData(req, res) {
     const deposit = purchasePrice / 4;
 
     const data = {
-      userId: "5fb3effadbe5216f6beee6c5",
+      account: "5fb3effadbe5216f6beee6c5",
       postCode: "M123AD",
       propertyNumber: faker.random.number({
         min: 1,
@@ -56,7 +56,7 @@ function getRental() {
   let dataArr = [];
   for (let id = 1; id <= 10; id++) {
     const rental = {
-      userId: "5fb3effadbe5216f6beee6c5",
+      account: "5fb3effadbe5216f6beee6c5",
       property: "60310e34694c3400098dc19f",
       currentRental: {
         ...copyRent,

@@ -7,7 +7,7 @@ const oneOffRevenueExpense = require("../../models/oneOffRevenueExpense/model.js
 
 async function getProjectFinanceByUserId(req, res) {
   try {
-    const { userId } = req;
+    const { account } = req;
     const { startDate } = req.query;
     const finances = {};
     let query = 1;
@@ -39,7 +39,7 @@ async function getProjectFinanceByUserId(req, res) {
     for (let i = 0; i < financeArray.length; i++) {
       const finance = financeArray[i];
       const response = await finance
-        .find({ $and: [{ userId }, { startDate: query }] })
+        .find({ $and: [{ account }, { startDate: query }] })
         .sort({ startDate: 1 })
         .lean();
 
