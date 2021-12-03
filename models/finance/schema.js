@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 const Schema = mongoose.Schema;
-let Finances = new Schema({
+let Finance = new Schema({
   name: {
     type: String,
     required: true,
@@ -22,13 +22,13 @@ let Finances = new Schema({
     type: Date,
   },
   property: {
-    type: String,
+    type: mongoose.Types.ObjectId,
     required: true,
   },
   account: {
-    type: String,
+    type: mongoose.Types.ObjectId,
     required: true,
   },
 });
 
-module.exports = Finances;
+module.exports = Finance;
