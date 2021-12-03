@@ -12,7 +12,7 @@ const {
   getTotalEquity,
 } = require("./utils/calculations");
 
-async function analyseFinancialData() {
+async function analyseFinancialData(req, res) {
   // @todo - should be for the current year - need to add date query
   const yearlyFinance = await Finance.find({}).lean();
   const grossIncome = getGrossIncome(yearlyFinance);
