@@ -46,7 +46,7 @@ async function analyseFinancialData() {
     totalEquity,
   };
 
-  return dataAnalysis;
+  return res.status(200).json(dataAnalysis);
 }
 
 module.exports = analyseFinancialData;
