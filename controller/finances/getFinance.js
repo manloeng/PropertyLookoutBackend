@@ -1,16 +1,23 @@
-const getModel = require("../utils/getModel");
+const Finance = require("../../models/finance/model.js");
 
 async function getFinance(req, res) {
-  const Model = getModel(req.route.path);
-
   try {
-    const { propertyId } = req.query;
+    const { account } = req;
+    const { startDate } = req.query;
 
-    const finance = await Model.find({ property: propertyId }).exec();
+    if (startDate) {
+      const newStartDate = new Date(startDate);
+      const currentYear = newStartDate.getFullYear();
+      query = { $gte: `${currentYear}-01-01` };
+    }
 
-    res.status(200).send({ finance });
-  } catch (e) {
-    console.log(e);
+    const response = await Finance.find({ account })
+      .sort({ startDate: 1 })
+      .lean();
+
+    return res.status(200).json(response);
+  } catch (err) {
+    console.log(err);
   }
 }
 
