@@ -1,4 +1,4 @@
-const Finance = require("../../models/finances/model");
+const Finance = require("../../models/finance/model");
 
 async function deleteProjectFinances(req, res) {
   try {
