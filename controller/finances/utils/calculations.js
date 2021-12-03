@@ -48,17 +48,34 @@ function getDivisorByMonth() {
 
 function getReturnOnInvestment(finances) {
   const netIncome = getNetIncome(finances);
-
-  const capital = finances.filter((finance) => finance.type == "capital");
-  const totalCapital = getTotal(capital);
-
+  const totalCapital = getTotalEquity(finances);
   const ROI = netIncome / totalCapital;
   return ROI;
 }
-function getGrossYield() {}
-function getNetYield() {}
-function getLoanToValue() {}
-function getTotalEquity() {}
+
+function getGrossYield(finances, purchasePrice) {
+  const grossIncome = getGrossIncome(finances);
+  const grossYield = ((grossIncome / purchasePrice) * 100).toFixed(2);
+  return grossYield;
+}
+
+function getNetYield(finances, purchasePrice) {
+  const netIncome = getNetIncome(finances);
+  const netYield = ((netIncome / purchasePrice) * 100).toFixed(2);
+  return netYield;
+}
+
+function getLoanToValue(finances, purchasePrice) {
+  const totalEquity = getTotalEquity(finances);
+  const loanToValue = ((totalEquity / purchasePrice) * 100).toFixed(2);
+  return loanToValue;
+}
+
+function getTotalEquity(finances) {
+  const capital = finances.filter((finance) => finance.type == "capital");
+  const totalCapital = getTotal(capital);
+  return totalCapital;
+}
 
 module.exports = {
   getGrossIncome,
