@@ -1,4 +1,5 @@
 const Finance = require("../../models/finance/model.js");
+const Property = require("../../models/property/model.js");
 const {
   getGrossIncome,
   getNetIncome,
@@ -12,17 +13,26 @@ const {
 } = require("./utils/calculations");
 
 async function analyseFinancialData() {
-  // should be for the current year - need to add date query
-  const finance = await Finance.find({}).lean();
-  const grossIncome = getGrossIncome(finance);
-  const netIncome = getNetIncome(finance);
-  const averageMonthlyIncome = getAverageMonthlyIncome(finance);
-  const averageMonthlyExpense = getAverageMonthlyExpense(finance);
-  const returnOnInvestment = getReturnOnInvestment(finance);
-  const grossYield = getGrossYield(finance);
-  const netYield = getNetYield(finance);
-  const loanToValue = getLoanToValue(finance);
-  const totalEquity = getTotalEquity(finance);
+  // @todo - should be for the current year - need to add date query
+  const yearlyFinance = await Finance.find({}).lean();
+  const grossIncome = getGrossIncome(yearlyFinance);
+  const netIncome = getNetIncome(yearlyFinance);
+  const averageMonthlyIncome = getAverageMonthlyIncome(yearlyFinance);
+  const averageMonthlyExpense = getAverageMonthlyExpense(yearlyFinance);
+
+  // Get property data in order to full calculations
+  const properties = await Property.find({}).lean();
+  const totalPurchasePrice = Object.values(properties).reduce(
+    (previousKey, key) => previousKey + key.purchasePrice,
+    0
+  );
+
+  const allFinance = await Finance.find({}).lean();
+  const returnOnInvestment = getReturnOnInvestment(allFinance);
+  const grossYield = getGrossYield(allFinance, totalPurchasePrice);
+  const netYield = getNetYield(allFinance, totalPurchasePrice);
+  const loanToValue = getLoanToValue(allFinance, totalPurchasePrice);
+  const totalEquity = getTotalEquity(allFinance);
 
   const dataAnalysis = {
     grossIncome,
