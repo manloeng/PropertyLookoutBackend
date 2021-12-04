@@ -1,7 +1,7 @@
 const Finance = require("../../models/finance/model");
 
 // @todo - need to add form validation here!
-async function addProjectFinances(req, res) {
+async function addFinance(req, res) {
   try {
     const { account } = req;
     const { propertyId } = req.params;
@@ -23,4 +23,4 @@ async function addProjectFinances(req, res) {
   }
 }
 
-module.exports = addProjectFinances;
+module.exports = addFinance;
