@@ -15,7 +15,6 @@ const {
 async function analyseFinancialData(req, res) {
   // @todo - should be for the current year - need to add date query
   const yearlyFinance = await Finance.find({}).lean();
-  console.log(yearlyFinance, "yearly");
   const grossIncome = getGrossIncome(yearlyFinance);
   const netIncome = getNetIncome(yearlyFinance);
   const averageMonthlyIncome = getAverageMonthlyIncome(yearlyFinance);
