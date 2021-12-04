@@ -13,10 +13,9 @@ apiRouter
   .get((req, res) => res.send({ ok: true }))
   .all(methodNotAllowed);
 
-// apiRouter.use(auth);
 apiRouter.use("/property", propertyRouter);
 apiRouter.use("/finance", financeRouter);
-apiRouter.use("/user", userRouter);
+// apiRouter.use("/user", userRouter);
 
 // For Testing Purposes only!!!
 apiRouter.route("/test").get(getTestData);
@@ -34,9 +33,13 @@ apiRouter.route("/drop-all").post(async (req, res) => {
     "oneOffRevenueExpense",
   ];
 
-  const currentCollections = await mongoose.connection.db.listCollections().toArray();
+  const currentCollections = await mongoose.connection.db
+    .listCollections()
+    .toArray();
 
-  const collectionNames = currentCollections.map((collection) => collection.name);
+  const collectionNames = currentCollections.map(
+    (collection) => collection.name
+  );
 
   collections.forEach(async (collection) => {
     if (collectionNames.includes(collection)) {
