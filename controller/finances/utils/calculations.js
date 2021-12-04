@@ -12,7 +12,7 @@ function getGrossIncome(finances) {
 }
 
 function getGrossExpense(finances) {
-  const expenses = finances.filter((finance) => finance.type != "income");
+  const expenses = finances.filter((finance) => finance.type == "revenue");
   const grossExpense = getTotal(expenses);
   return grossExpense;
 }
