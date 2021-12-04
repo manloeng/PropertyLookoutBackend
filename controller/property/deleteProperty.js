@@ -1,5 +1,5 @@
 const Property = require("../../models/property/model.js");
-const deletePropertyData = require("../utils/deletePropertyData");
+const deletePropertyData = require("./utils/deletePropertyData");
 
 async function deleteProperty(req, res) {
   try {
