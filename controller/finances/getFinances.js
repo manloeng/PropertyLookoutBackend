@@ -15,13 +15,11 @@ module.exports = getFinances;
 
 function setupQuery(req) {
   const { account } = req;
-  const path = req.path;
   const { propertyId } = req.params;
-  const { startDate, endDate = "" } = req.query;
+  const { startDate, endDate = "", type = "" } = req.query;
 
   let queries = [{ account }];
 
-  let type = path.slice(1);
   if (type) queries.push({ type });
   if (propertyId) queries.push({ property: propertyId });
 
