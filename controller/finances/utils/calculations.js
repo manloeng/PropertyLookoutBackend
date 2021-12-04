@@ -49,7 +49,7 @@ function getDivisorByMonth() {
 function getReturnOnInvestment(finances) {
   const netIncome = getNetIncome(finances);
   const totalCapital = getTotalEquity(finances);
-  const ROI = netIncome / totalCapital;
+  const ROI = ((netIncome / totalCapital) * 100).toFixed(2);
   return ROI;
 }
 
