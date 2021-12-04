@@ -1,12 +1,10 @@
-const getModel = require("../utils/getModel");
+const Finance = require("../../models/finance/model");
 
 async function deleteFinance(req, res) {
-  const Model = getModel(req.route.path);
-
   try {
     const { id } = req.params;
 
-    await Model.findByIdAndDelete({ _id: id }).exec();
+    await Finance.findByIdAndDelete({ _id: id }).exec();
 
     res.status(200).send({ msg: "Sucessfully deleted" });
   } catch (e) {
