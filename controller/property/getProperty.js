@@ -7,7 +7,7 @@ async function getProperty(req, res) {
 
     const property = await Property.find({
       $and: [{ account }, { _id: propertyId }],
-    }).exec();
+    }).lean();
 
     return res.status(200).json(property);
   } catch (e) {
