@@ -23,7 +23,8 @@ async function analyseFinancialData(req, res) {
   const averageMonthlyExpense = getAverageMonthlyExpense(finance);
 
   // Get property data in order to full calculations
-  const properties = await Property.find(query).lean();
+  const query_for_prop = query["$and"][0];
+  const properties = await Property.find(query_for_prop).lean();
   const totalPurchasePrice = Object.values(properties).reduce(
     (previousKey, key) => previousKey + key.purchasePrice,
     0
@@ -36,6 +37,7 @@ async function analyseFinancialData(req, res) {
   const totalEquity = getTotalEquity(finance);
 
   const dataAnalysis = {
+    numberOfProperties: properties.length,
     grossIncome,
     netIncome,
     averageMonthlyIncome,
