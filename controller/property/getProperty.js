@@ -2,12 +2,8 @@ const Property = require("../../models/property/model");
 
 async function getProperty(req, res) {
   try {
-    const { account } = req;
     const { propertyId } = req.params;
-
-    const property = await Property.find({
-      $and: [{ account }, { _id: propertyId }],
-    }).lean();
+    const property = await Property.findOne({ _id: propertyId }).lean();
 
     return res.status(200).json(property);
   } catch (e) {
