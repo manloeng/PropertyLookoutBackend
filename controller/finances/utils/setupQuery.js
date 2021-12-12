@@ -1,7 +1,6 @@
 function setupQuery(req) {
   const { account } = req;
-  const { propertyId } = req.params;
-  const { date = "", type = "" } = req.query;
+  const { date = "", type = "", propertyId = "" } = req.query;
 
   let queries = [{ account }];
 
