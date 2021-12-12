@@ -7,6 +7,15 @@ async function getYearlyFinance(req, res) {
     const query = setupQuery(req);
     const finances = await Finance.find(query).sort({ date: 1 }).lean();
 
+    if (!finances.length) {
+      return res.status(200).json({
+        name: type,
+        startYear: new Date().getFullYear(),
+        endYear: new Date().getFullYear(),
+        costs: [],
+      });
+    }
+
     const endYear = finances[finances.length - 1].date.getFullYear();
     const startYear = finances[0].date.getFullYear();
     const costs = getCosts(finances, startYear, endYear);
