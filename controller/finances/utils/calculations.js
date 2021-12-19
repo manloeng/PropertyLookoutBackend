@@ -1,3 +1,13 @@
+function getAverageRent(finances) {
+  const rents = finances.filter(
+    (finance) => finance.name == "Rent" || finance.name == "rent"
+  );
+  const numberOfTimesPaid = rents.length;
+  const totalRent = getTotal(rents);
+  const averageRent = Math.round((totalRent / numberOfTimesPaid) * 100) / 100;
+  return averageRent;
+}
+
 function getNetIncome(finances) {
   const grossIncome = getGrossIncome(finances);
   const grossExpense = getGrossExpense(finances);
@@ -78,6 +88,7 @@ function getTotalEquity(finances) {
 }
 
 module.exports = {
+  getAverageRent,
   getGrossIncome,
   getNetIncome,
   getAverageMonthlyIncome,

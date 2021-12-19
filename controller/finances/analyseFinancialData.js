@@ -1,6 +1,7 @@
 const Finance = require("../../models/finance/model.js");
 const Property = require("../../models/property/model.js");
 const {
+  getAverageRent,
   getGrossIncome,
   getNetIncome,
   getAverageMonthlyIncome,
@@ -17,6 +18,7 @@ const setupQuery = require("./utils/setupQuery");
 async function analyseFinancialData(req, res) {
   const query = setupQuery(req);
   const finance = await Finance.find(query).lean();
+  const averageRent = getAverageRent(finance);
   const grossIncome = getGrossIncome(finance);
   const netIncome = getNetIncome(finance);
   const averageMonthlyIncome = getAverageMonthlyIncome(finance);
@@ -37,6 +39,7 @@ async function analyseFinancialData(req, res) {
   const totalEquity = getTotalEquity(finance);
 
   const dataAnalysis = {
+    averageRent,
     numberOfProperties: properties.length,
     grossIncome,
     netIncome,
