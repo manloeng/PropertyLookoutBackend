@@ -4,7 +4,7 @@ const Finance = require("../../models/finance/model");
 async function addFinance(req, res) {
   try {
     const { account } = req;
-    const { propertyId } = req.params;
+    const { propertyId } = req.query;
     const { ...restOfData } = req.body;
 
     const finance = new Finance({
