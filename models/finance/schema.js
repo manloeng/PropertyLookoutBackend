@@ -11,7 +11,7 @@ let Finance = new Schema({
     required: true,
   },
   cost: {
-    type: String,
+    type: Number,
     required: true,
   },
   startDate: {
