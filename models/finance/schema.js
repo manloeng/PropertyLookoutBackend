@@ -29,6 +29,12 @@ let Finance = new Schema({
     type: mongoose.Types.ObjectId,
     required: true,
   },
+  description: {
+    type: String,
+  },
+  url: {
+    type: String,
+  },
 });
 
 module.exports = Finance;
