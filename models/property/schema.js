@@ -24,17 +24,6 @@ let PropertiesSchema = new Schema({
   purchaseDate: {
     type: Date,
   },
-  deposit: {
-    type: Number,
-  },
-  stampDutyLandTax: {
-    cost: {
-      type: Number,
-    },
-    units: {
-      type: String,
-    },
-  },
   propertyTenure: {
     tenure: {
       type: String,
