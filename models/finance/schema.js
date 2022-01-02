@@ -14,12 +14,9 @@ let Finance = new Schema({
     type: Number,
     required: true,
   },
-  startDate: {
+  date: {
     type: Date,
     required: true,
-  },
-  endDate: {
-    type: Date,
   },
   property: {
     type: mongoose.Types.ObjectId,
