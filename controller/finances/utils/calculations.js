@@ -2,6 +2,9 @@ function getAverageRent(finances) {
   const rents = finances.filter(
     (finance) => finance.name == "Rent" || finance.name == "rent"
   );
+
+  if (!rents.length) return 0;
+
   const numberOfTimesPaid = rents.length;
   const totalRent = getTotal(rents);
   const averageRent = Math.round((totalRent / numberOfTimesPaid) * 100) / 100;
