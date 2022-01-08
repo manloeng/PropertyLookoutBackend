@@ -14,7 +14,6 @@ const {
 } = require("./utils/calculations");
 const setupQuery = require("./utils/setupQuery");
 
-// getting all, but i need only 1
 async function analyseFinancialData(req, res) {
   const query = setupQuery(req);
   const finance = await Finance.find(query).lean();
@@ -35,8 +34,12 @@ async function analyseFinancialData(req, res) {
   const returnOnInvestment = getReturnOnInvestment(finance);
   const grossYield = getGrossYield(finance, totalPurchasePrice);
   const netYield = getNetYield(finance, totalPurchasePrice);
-  const loanToValue = getLoanToValue(finance, totalPurchasePrice);
-  const totalEquity = getTotalEquity(finance);
+
+  // This should be based on total amount
+  const newQuery = getFullFinance(req);
+  const fullFinance = await Finance.find(newQuery).lean();
+  const loanToValue = getLoanToValue(fullFinance, totalPurchasePrice);
+  const totalEquity = getTotalEquity(fullFinance);
 
   const dataAnalysis = {
     averageRent,
@@ -53,6 +56,17 @@ async function analyseFinancialData(req, res) {
   };
 
   return res.status(200).json(dataAnalysis);
+}
+
+function getFullFinance(req) {
+  const { account } = req;
+  const { propertyId = "" } = req.query;
+
+  let queries = [{ account }];
+  if (propertyId) queries.push({ property: propertyId });
+
+  if (queries.length) return { $and: queries };
+  else return {};
 }
 
 module.exports = analyseFinancialData;
