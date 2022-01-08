@@ -6,7 +6,11 @@ function setupQuery(req) {
 
   if (type) queries.push({ type });
   if (propertyId) queries.push({ property: propertyId });
-  if (date) queries.push({ date: { $gte: new Date(date) } });
+  if (date) {
+    const dateArr = date.split("/");
+    const endDate = `${dateArr[0]}/12/31`;
+    queries.push({ date: { $gte: new Date(date), $lte: new Date(endDate) } });
+  }
 
   if (queries.length) return { $and: queries };
   else return {};
