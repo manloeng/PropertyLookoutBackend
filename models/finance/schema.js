@@ -11,7 +11,7 @@ let Finance = new Schema({
     required: true,
   },
   cost: {
-    type: Number,
+    type: mongoose.Types.Decimal128,
     required: true,
   },
   date: {
