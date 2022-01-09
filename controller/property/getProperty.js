@@ -1,10 +1,9 @@
 const Property = require("../../models/property/model");
 
-async function getPropertyByPropertyId(req, res) {
+async function getProperty(req, res) {
   try {
     const { propertyId } = req.params;
-
-    const property = await Property.find({ _id: propertyId }).exec();
+    const property = await Property.findOne({ _id: propertyId }).lean();
 
     return res.status(200).json(property);
   } catch (e) {
@@ -12,4 +11,4 @@ async function getPropertyByPropertyId(req, res) {
   }
 }
 
-module.exports = getPropertyByPropertyId;
+module.exports = getProperty;

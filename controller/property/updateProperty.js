@@ -1,6 +1,6 @@
 const Property = require("../../models/property/model");
 
-async function updatePropertyByPropertyId(req, res) {
+async function updateProperty(req, res) {
   try {
     const { propertyId } = req.params;
     const data = req.body;
@@ -23,4 +23,4 @@ async function updatePropertyByPropertyId(req, res) {
   }
 }
 
-module.exports = updatePropertyByPropertyId;
+module.exports = updateProperty;

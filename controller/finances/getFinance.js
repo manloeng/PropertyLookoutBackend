@@ -1,14 +1,17 @@
-const getModel = require("../utils/getModel");
+const Finance = require("../../models/finance/model");
 
 async function getFinance(req, res) {
-  const Model = getModel(req.route.path);
-
   try {
-    const { propertyId } = req.query;
+    const { account } = req;
+    const { financeId } = req.params;
 
-    const finance = await Model.find({ property: propertyId }).exec();
+    const finance = await Finance.find({
+      $and: [{ account }, { _id: financeId }],
+    })
+      .sort({ date: -1 })
+      .lean();
 
-    res.status(200).send({ finance });
+    return res.status(200).json(finance);
   } catch (e) {
     console.log(e);
   }

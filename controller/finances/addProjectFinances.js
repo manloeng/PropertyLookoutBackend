@@ -1,4 +1,4 @@
-const Finance = require("../../models/finances/model");
+const Finance = require("../../models/finance/model");
 
 // @todo - need to add form validation here!
 async function addProjectFinances(req, res) {
@@ -7,7 +7,9 @@ async function addProjectFinances(req, res) {
     const financesData = req.body;
     const newPayloads = setPayloadData(financesData);
 
-    let propertyFinance = await Finance.findOne({ property: propertyId }).exec();
+    let propertyFinance = await Finance.findOne({
+      property: propertyId,
+    }).exec();
 
     if (!propertyFinance) {
       propertyFinance = new Finance({
@@ -21,7 +23,9 @@ async function addProjectFinances(req, res) {
 
       let finalKeyExist;
       try {
-        finalKeyExist = Object.keys(propertyFinance[splitKey[0]][splitKey[1]]).includes(splitKey[2]);
+        finalKeyExist = Object.keys(
+          propertyFinance[splitKey[0]][splitKey[1]]
+        ).includes(splitKey[2]);
         if (finalKeyExist) {
           const response = await Finance.findOneAndUpdate(
             { property: propertyId },
@@ -44,7 +48,9 @@ async function addProjectFinances(req, res) {
       }
     });
 
-    let newPropertyFinance = await Finance.findOne({ property: propertyId }).exec();
+    let newPropertyFinance = await Finance.findOne({
+      property: propertyId,
+    }).exec();
 
     res.status(200).send({ finance: newPropertyFinance });
   } catch (e) {
@@ -64,13 +70,29 @@ function setPayloadData(financesData) {
       updateString = "income.monthly." + dateKey;
     } else if (financeType === "income" && recurrence === "oneTime") {
       updateString = "income.oneTime." + dateKey;
-    } else if (financeType === "expense" && recurrence === "monthly" && expenseType === "capital") {
+    } else if (
+      financeType === "expense" &&
+      recurrence === "monthly" &&
+      expenseType === "capital"
+    ) {
       updateString = "expense.capital.monthly." + dateKey;
-    } else if (financeType === "expense" && recurrence === "oneTime" && expenseType === "capital") {
+    } else if (
+      financeType === "expense" &&
+      recurrence === "oneTime" &&
+      expenseType === "capital"
+    ) {
       updateString = "expense.capital.oneTime." + dateKey;
-    } else if (financeType === "expense" && recurrence === "monthly" && expenseType === "revenue") {
+    } else if (
+      financeType === "expense" &&
+      recurrence === "monthly" &&
+      expenseType === "revenue"
+    ) {
       updateString = "expense.revenue.monthly." + dateKey;
-    } else if (financeType === "expense" && recurrence === "oneTime" && expenseType === "revenue") {
+    } else if (
+      financeType === "expense" &&
+      recurrence === "oneTime" &&
+      expenseType === "revenue"
+    ) {
       updateString = "expense.revenue.oneTime." + dateKey;
     }
 

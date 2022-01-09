@@ -1,13 +1,18 @@
-const getModel = require("../utils/getModel");
+const Finance = require("../../models/finance/model");
 
 async function updateFinance(req, res) {
-  const Model = getModel(req.route.path);
-
   try {
-    const { id } = req.params;
+    const { financeId } = req.params;
     const data = req.body;
 
-    const updatedFinance = await Model.findOneAndUpdate({ _id: id }, data, { strict: false, new: true }).exec();
+    const updatedFinance = await Finance.findOneAndUpdate(
+      { _id: financeId },
+      data,
+      {
+        strict: false,
+        new: true,
+      }
+    ).exec();
 
     res.status(200).send({ updatedFinance });
   } catch (e) {

@@ -1,38 +1,24 @@
 const propertyRouter = require("express").Router();
+const getProperties = require("../controller/property/getProperties");
 const addProperty = require("../controller/property/addProperty");
-const getAllPropertiesByUserId = require("../controller/property/getAllPropertiesByUserId");
-const getPropertyByPropertyId = require("../controller/property/getPropertyByPropertyId");
-const updatePropertyByPropertyId = require("../controller/property/updatePropertyByPropertyId");
-const deletePropertyByPropertyId = require("../controller/property/deletePropertyByPropertyId");
-const addProjectFinances = require("../controller/finances/addProjectFinances");
-const deleteProjectFinances = require("../controller/finances/deleteProjectFinances");
-const getProjectFinanceByPropertyId = require("../controller/finances/getProjectFinanceByPropertyId");
-const getRentalDataByPropertyId = require("../controller/property/getRentalDataByPropertyId");
-const updateRentalDataByPropertyId = require("../controller/property/updateRentalDataByPropertyId");
+const getProperty = require("../controller/property/getProperty");
+const updateProperty = require("../controller/property/updateProperty");
+const deleteProperty = require("../controller/property/deleteProperty");
+const addFinance = require("../controller/finances/addFinance");
 const { methodNotAllowed } = require("../errors");
 
-// should get all properties without showing users id
-propertyRouter.route("/").get(getAllPropertiesByUserId).post(addProperty).all(methodNotAllowed);
+propertyRouter
+  .route("/")
+  .get(getProperties)
+  .post(addProperty)
+  .all(methodNotAllowed);
 
 propertyRouter
   .route("/:propertyId")
-  .get(getPropertyByPropertyId)
-  .patch(updatePropertyByPropertyId)
-  .delete(deletePropertyByPropertyId)
-  .all(methodNotAllowed);
-
-propertyRouter
-  .route("/:propertyId/finance")
-  .get(getProjectFinanceByPropertyId)
-  .post(addProjectFinances)
-  .patch(deleteProjectFinances)
-  .all(methodNotAllowed);
-
-// could do queries instead?
-propertyRouter
-  .route("/:propertyId/rental")
-  .get(getRentalDataByPropertyId)
-  .patch(updateRentalDataByPropertyId)
+  .get(getProperty)
+  .post(addFinance)
+  .patch(updateProperty)
+  .delete(deleteProperty)
   .all(methodNotAllowed);
 
 module.exports = propertyRouter;
