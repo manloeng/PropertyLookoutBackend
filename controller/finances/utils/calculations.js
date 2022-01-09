@@ -32,9 +32,10 @@ function getGrossExpense(finances) {
 
 function getTotal(finance) {
   const total = Object.values(finance).reduce(
-    (previousKey, key) => previousKey + key.cost,
+    (previousKey, key) => previousKey + parseFloat(key.cost),
     0
   );
+
   return total;
 }
 
