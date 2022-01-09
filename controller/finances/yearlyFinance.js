@@ -49,7 +49,7 @@ function getMonthlyCosts(finances, startYear) {
     const year = finance.date.getFullYear();
     if (year == startYear) {
       const month = finance.date.getMonth();
-      const cost = finance.cost;
+      const cost = parseFloat(finance.cost);
       monthlyCost[month] += cost;
     }
   });
