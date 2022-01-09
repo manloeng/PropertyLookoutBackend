@@ -8,7 +8,7 @@ async function getFinance(req, res) {
     const finance = await Finance.find({
       $and: [{ account }, { _id: financeId }],
     })
-      .sort({ startDate: 1 })
+      .sort({ date: -1 })
       .lean();
 
     return res.status(200).json(finance);
